@@ -101,6 +101,11 @@ Verificado em 2026-08-30:
 - `/api/newsletter` → `{"error":"Erro ao buscar inscrições"}`
 
 **O formulário "Fale com o Mandato" não está funcionando.** Quem preenche recebe erro.
+
+Netlify Forms não está ativo e há **0 envios armazenados** — nada foi retido como backup,
+então as mensagens enviadas nesse período se perderam.
+
+👉 **Plano de conserto:** [docs/corrigir-formulario.md](docs/corrigir-formulario.md)
 A mensagem do newsletter indica um banco de dados por trás que não responde — e o
 projeto não tem nenhuma variável de ambiente configurada na Netlify, o que é
 provavelmente a causa.
