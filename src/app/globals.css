@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/*
+  Design tokens do mandato Givago Ribeiro.
+  Cores recuperadas do site em produção — ver README.
+*/
+@theme {
+  --color-background: #fbf8f1;
+  --color-foreground: #101810;
+
+  --color-card: #fdfcf8;
+  --color-card-foreground: #101810;
+
+  --color-popover: #fdfcf8;
+  --color-popover-foreground: #101810;
+
+  --color-primary: #1e6626;
+  --color-primary-foreground: #fbf8f1;
+
+  --color-secondary: #185d79;
+  --color-secondary-foreground: #fbf8f1;
+
+  --color-accent: #fac547;
+  --color-accent-foreground: #2d1f01;
+
+  --color-muted: #e1e6e0;
+  --color-muted-foreground: #4f584f;
+
+  --color-terracotta: #9a6051;
+
+  --color-footer: #003c6e;
+  --color-footer-foreground: #fbf8f1;
+
+  --color-border: #cad0ca;
+  --color-input: #e1e6e0;
+  --color-ring: #1e6626;
+
+  --color-destructive: #d40c1a;
+  --color-destructive-foreground: #fbf8f1;
+
+  --font-heading: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  --shadow-soft: 0 4px 20px -4px rgb(16 24 16 / 0.12);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  /* O usuário que prefere menos animação não recebe os fade-ins. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility container-custom {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+}
+
+/* Foco visível — navegação por teclado precisa disso. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Conteúdo vindo do WordPress — o HTML do post não traz classes do site. */
+.conteudo-wp {
+  line-height: 1.75;
+  color: var(--color-muted-foreground);
+}
+
+.conteudo-wp > * + * {
+  margin-top: 1.25rem;
+}
+
+.conteudo-wp h2,
+.conteudo-wp h3,
+.conteudo-wp h4 {
+  color: var(--color-foreground);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.conteudo-wp h2 { font-size: 1.5rem; }
+.conteudo-wp h3 { font-size: 1.25rem; }
+
+.conteudo-wp a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.conteudo-wp img {
+  border-radius: 1rem;
+  height: auto;
+  max-width: 100%;
+}
+
+.conteudo-wp ul,
+.conteudo-wp ol {
+  padding-left: 1.5rem;
+}
+
+.conteudo-wp ul { list-style: disc; }
+.conteudo-wp ol { list-style: decimal; }
+
+.conteudo-wp blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+.conteudo-wp figcaption {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}

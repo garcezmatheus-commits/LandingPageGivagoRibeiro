@@ -1,71 +1,40 @@
-[images]
-remote_images = [
-  "^(?:https:\\/\\/(?!\\.)[^/]*?\\.wordpress\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-  "^(?:https:\\/\\/(?!\\.)[^/]*?\\.files\\.wordpress\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-  "^(?:https:\\/\\/i\\.ytimg\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-  "^(?:https:\\/\\/img\\.youtube\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$"
-]
-
 [build]
-command = "bun run build"
-publish = ".next"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# O conteúdo do blog vem do WordPress e as capas dos vídeos do YouTube.
+[images]
+  remote_images = [
+    "^https://.*\\.wordpress\\.com/.*",
+    "^https://.*\\.files\\.wordpress\\.com/.*",
+    "^https://i\\.ytimg\\.com/.*",
+    "^https://img\\.youtube\\.com/.*"
+  ]
 
 [[headers]]
-for = "/_next/static/*"
+  for = "/_next/static/*"
 
   [headers.values]
-  Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Endereços antigos das páginas legais, para não quebrar links já divulgados.
+[[redirects]]
+  from = "/politica-de-privacidade"
+  to = "/privacidade"
+  status = 301
 
 [[redirects]]
-from = "/_next/image"
-to = "/.netlify/images?url=:url&w=:width&q=:quality"
-status = 200
-
-  [redirects.query]
-  url = ":url"
-  w = ":width"
-  q = ":quality"
-
-[[redirects]]
-from = "/_ipx/*"
-to = "/.netlify/images?url=:url&w=:width&q=:quality"
-status = 200
-
-  [redirects.query]
-  url = ":url"
-  w = ":width"
-  q = ":quality"
-
-[context]
-
-  [context.production]
-
-    [context.production.images]
-    remote_images = [
-      "^(?:https:\\/\\/(?!\\.)[^/]*?\\.wordpress\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-      "^(?:https:\\/\\/(?!\\.)[^/]*?\\.files\\.wordpress\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-      "^(?:https:\\/\\/i\\.ytimg\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-      "^(?:https:\\/\\/img\\.youtube\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$"
-    ]
-
-    [[context.production.headers]]
-    for = "/_next/static/*"
-
-      [context.production.headers.values]
-      Cache-Control = "public, max-age=31536000, immutable"
-
-  [context.master]
-
-    [context.master.images]
-    remote_images = [
-      "^(?:https:\\/\\/(?!\\.)[^/]*?\\.wordpress\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-      "^(?:https:\\/\\/(?!\\.)[^/]*?\\.files\\.wordpress\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-      "^(?:https:\\/\\/i\\.ytimg\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$",
-      "^(?:https:\\/\\/img\\.youtube\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$"
-    ]
-
-    [[context.master.headers]]
-    for = "/_next/static/*"
-
-      [context.master.headers.values]
-      Cache-Control = "public, max-age=31536000, immutable"
+  from = "/termos-de-uso"
+  to = "/termos"
+  status = 301
