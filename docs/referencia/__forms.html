@@ -1,0 +1,37 @@
+<!--
+  Detecção de formulários pela Netlify.
+
+  O formulário real é renderizado por React, e o parser da Netlify só lê HTML
+  estático no momento do build. Este arquivo existe apenas para declarar os
+  campos; ninguém acessa esta página.
+
+  Local: public/__forms.html
+-->
+<html>
+  <head><title>Formulários</title></head>
+  <body>
+    <form name="contato" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contato" />
+      <input name="bot-field" />
+      <input type="text" name="nome" />
+      <input type="email" name="email" />
+      <input type="tel" name="telefone" />
+      <input type="text" name="bairro" />
+      <select name="assunto">
+        <option value="Demanda do Bairro">Demanda do Bairro</option>
+        <option value="Sugestão">Sugestão</option>
+        <option value="Convite">Convite</option>
+        <option value="Imprensa">Imprensa</option>
+        <option value="Outro">Outro</option>
+      </select>
+      <textarea name="mensagem"></textarea>
+      <input type="checkbox" name="lgpd" />
+    </form>
+
+    <form name="newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="newsletter" />
+      <input name="bot-field" />
+      <input type="email" name="email" />
+    </form>
+  </body>
+</html>
