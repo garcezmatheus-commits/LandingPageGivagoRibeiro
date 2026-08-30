@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import { MANDATO } from "@/lib/conteudo";
 import "./globals.css";
@@ -35,6 +35,12 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+};
+
+// A barra do navegador no celular acompanha o fundo do site.
+export const viewport: Viewport = {
+  themeColor: "#fbf8f1",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

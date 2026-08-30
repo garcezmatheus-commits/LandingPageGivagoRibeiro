@@ -58,7 +58,7 @@ export function ContatoSection() {
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
           <Badge className="mb-3">Participe</Badge>
-          <h2 id="contato-titulo" className="font-heading text-3xl font-bold md:text-4xl">
+          <h2 id="contato-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
             Fale com o Mandato
           </h2>
           <p className="mt-3 text-muted-foreground">
@@ -71,7 +71,7 @@ export function ContatoSection() {
             <Card>
               <CardContent className="pt-6">
                 {estado === "ok" ? (
-                  <div className="py-12 text-center">
+                  <div className="py-12 text-center" role="status" aria-live="polite">
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                       <CheckCircle2 className="h-8 w-8 text-primary" aria-hidden="true" />
                     </div>
@@ -108,6 +108,9 @@ export function ContatoSection() {
                           type="email"
                           required
                           autoComplete="email"
+                          inputMode="email"
+                          spellCheck={false}
+                          placeholder="seu@email.com"
                           value={dados.email}
                           onChange={(e) => alterar("email", e.target.value)}
                         />
@@ -120,6 +123,8 @@ export function ContatoSection() {
                           name="telefone"
                           type="tel"
                           autoComplete="tel"
+                          inputMode="tel"
+                          placeholder="(55) 99999-9999"
                           value={dados.telefone}
                           onChange={(e) => alterar("telefone", e.target.value)}
                         />
@@ -169,7 +174,7 @@ export function ContatoSection() {
                         name="mensagem"
                         rows={5}
                         required
-                        placeholder="Descreva sua sugestão, demanda ou convite..."
+                        placeholder="Descreva sua sugestão, demanda ou convite…"
                         value={dados.mensagem}
                         onChange={(e) => alterar("mensagem", e.target.value)}
                       />
@@ -194,7 +199,7 @@ export function ContatoSection() {
                     </div>
 
                     {erro && (
-                      <p role="alert" className="flex items-center gap-2 text-sm text-destructive">
+                      <p role="alert" aria-live="polite" className="flex items-center gap-2 text-sm text-destructive">
                         <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
                         {erro}
                       </p>
@@ -204,7 +209,7 @@ export function ContatoSection() {
                       {estado === "enviando" ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                          Enviando...
+                          Enviando…
                         </>
                       ) : (
                         <>

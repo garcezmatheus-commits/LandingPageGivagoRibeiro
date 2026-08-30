@@ -33,7 +33,7 @@ export function HeroSection() {
           <p className="mb-4 text-sm font-medium uppercase tracking-widest text-white/80">
             {MANDATO.cargo}
           </p>
-          <h1 className="font-heading text-4xl font-bold leading-tight text-white md:text-6xl">
+          <h1 className="text-balance font-heading text-4xl font-bold leading-tight text-white md:text-6xl">
             Gestão com Raiz,
             <br />
             Disciplina e Resultado

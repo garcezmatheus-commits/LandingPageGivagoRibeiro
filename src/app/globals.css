@@ -45,8 +45,27 @@
 }
 
 @layer base {
+  /* O header é fixo com 80px; sem isso o topo de cada seção fica escondido
+     atrás dele ao chegar por link de âncora. */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
   * {
     border-color: var(--color-border);
+  }
+
+  /* Remove o atraso de 300ms do duplo-toque no celular. */
+  a, button, [role="button"], input, select, textarea {
+    touch-action: manipulation;
   }
 
   body {

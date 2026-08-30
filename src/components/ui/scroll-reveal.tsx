@@ -10,9 +10,13 @@ interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * Revela o conteúdo ao entrar na viewport.
  *
- * Começa visível e só esconde depois que o observer é montado no cliente —
- * assim quem chega com JS desligado, ou por link direto para uma âncora,
- * nunca fica olhando para uma seção em branco.
+ * Duas salvaguardas contra o conteúdo ficar invisível para sempre:
+ *
+ * 1. Começa visível e só esconde depois que o observer é montado no cliente —
+ *    quem chega com JS desligado, ou por link direto para uma âncora, vê tudo.
+ * 2. O callback também revela quando o elemento já passou pela tela. Num scroll
+ *    rápido (clique no menu, flick no celular) o navegador agrupa os eventos e
+ *    o "entrou na tela" se perde; sem essa checagem a seção nunca aparecia.
  */
 export function ScrollReveal({ delay = 0, className, children, ...props }: ScrollRevealProps) {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -20,22 +24,21 @@ export function ScrollReveal({ delay = 0, className, children, ...props }: Scrol
 
   React.useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || typeof IntersectionObserver === "undefined") return;
 
-    if (typeof IntersectionObserver === "undefined") return;
+    const jaAlcancado = () => el.getBoundingClientRect().top < window.innerHeight;
 
-    const jaVisivel = el.getBoundingClientRect().top < window.innerHeight;
-    if (jaVisivel) return;
-
+    if (jaAlcancado()) return;
     setVisivel(false);
+
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
+      (entradas) => {
+        if (entradas.some((e) => e.isIntersecting) || jaAlcancado()) {
           setVisivel(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
     );
 
     observer.observe(el);
@@ -46,7 +49,7 @@ export function ScrollReveal({ delay = 0, className, children, ...props }: Scrol
     <div
       ref={ref}
       className={cn(
-        "transition-all duration-700 ease-out",
+        "transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
         visivel ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
         className
       )}

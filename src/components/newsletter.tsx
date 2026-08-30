@@ -30,7 +30,7 @@ export function Newsletter() {
 
   if (estado === "ok") {
     return (
-      <p className="flex items-center gap-2 text-sm text-footer-foreground/80">
+      <p role="status" aria-live="polite" className="flex items-center gap-2 text-sm text-footer-foreground/80">
         <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
         Inscrição confirmada. Obrigado!
       </p>
@@ -49,6 +49,9 @@ export function Newsletter() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="seu@email.com"
+        autoComplete="email"
+        inputMode="email"
+        spellCheck={false}
         className="border-white/20 bg-white/10 text-footer-foreground placeholder:text-footer-foreground/50"
       />
       <Button
@@ -59,14 +62,14 @@ export function Newsletter() {
         {estado === "enviando" ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-            Inscrevendo...
+            Inscrevendo…
           </>
         ) : (
           "Inscreva-se"
         )}
       </Button>
       {erro && (
-        <p role="alert" className="text-xs text-red-300">
+        <p role="alert" aria-live="polite" className="text-xs text-red-300">
           {erro}
         </p>
       )}

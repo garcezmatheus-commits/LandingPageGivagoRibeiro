@@ -24,7 +24,7 @@ export async function NoticiasSection() {
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
           <Badge className="mb-3">Acompanhe</Badge>
-          <h2 id="noticias-titulo" className="font-heading text-3xl font-bold md:text-4xl">
+          <h2 id="noticias-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
             Notícias e Transparência
           </h2>
           <p className="mt-3 text-muted-foreground">

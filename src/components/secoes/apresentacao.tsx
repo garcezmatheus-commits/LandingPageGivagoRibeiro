@@ -25,7 +25,7 @@ export function ApresentacaoSection() {
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-14 text-center">
           <Badge className="mb-3">Conheça a Trajetória</Badge>
-          <h2 id="apresentacao-titulo" className="font-heading text-3xl font-bold md:text-4xl">
+          <h2 id="apresentacao-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
             De Atleta a Gestor Público
           </h2>
           <p className="mt-3 text-muted-foreground">
@@ -88,7 +88,7 @@ export function ApresentacaoSection() {
             <ul className="grid grid-cols-3 gap-4">
               {NUMEROS.map((n) => (
                 <li key={n.rotulo} className="rounded-xl bg-card p-4 text-center shadow-soft">
-                  <p className="font-heading text-2xl font-bold text-primary">{n.valor}</p>
+                  <p className="font-heading text-2xl font-bold tabular-nums text-primary">{n.valor}</p>
                   <p className="mt-1 text-xs text-muted-foreground">{n.rotulo}</p>
                 </li>
               ))}

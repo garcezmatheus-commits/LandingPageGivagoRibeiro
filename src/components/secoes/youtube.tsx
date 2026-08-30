@@ -16,7 +16,7 @@ export async function YoutubeSection() {
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
           <Badge className="mb-3">YouTube</Badge>
-          <h2 id="youtube-titulo" className="font-heading text-3xl font-bold md:text-4xl">
+          <h2 id="youtube-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
             Acompanhe-nos pelo YouTube
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">

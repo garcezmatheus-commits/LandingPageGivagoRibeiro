@@ -45,7 +45,7 @@ export function PanoramaLegislativoSection() {
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
           <Badge className="mb-3">Panorama Legislativo 2026</Badge>
-          <h2 id="panorama-titulo" className="font-heading text-3xl font-bold md:text-4xl">
+          <h2 id="panorama-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
             Projetos de Lei do Vereador Givago
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-muted-foreground">
