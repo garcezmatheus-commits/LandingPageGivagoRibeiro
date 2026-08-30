@@ -76,10 +76,8 @@ O formulário é renderizado por React e o detector da Netlify só lê HTML est�
 no build, por isso existe `public/__forms.html` declarando os campos. O envio vai
 por POST para `/__forms.html`, que a Netlify intercepta no edge.
 
-> ⚠️ **Passo manual após o primeiro deploy:** no painel, em
-> **Forms → Form notifications**, apontar `contato` e `newsletter` para
-> `givagoribeirobr@gmail.com`. Sem isso os envios ficam salvos no painel mas não
-> chegam no e-mail. É configuração de conta — não sai por commit.
+Já configurado na Netlify: detecção de formulários ligada e notificação por e-mail
+para `givagoribeirobr@gmail.com` nos dois formulários. Verificado por envio real.
 
 ## Design tokens
 
