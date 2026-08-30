@@ -3,28 +3,53 @@
 Site institucional do mandato do vereador **Givago Ribeiro** (Santa Maria/RS).
 
 > ⚠️ **Este repositório contém apenas o BUILD do site, não o código-fonte.**
-> É um snapshot de referência para reconstruir o projeto. Ver [Situação atual](#situação-atual).
+> O fonte **existe** e está guardado na Netlify. Ver [Onde está o código-fonte](#onde-está-o-código-fonte).
 
 **Produção:** https://givagoribeiro.com.br
 
 ---
 
-## Situação atual
+## Onde está o código-fonte
 
-O código-fonte original se perdeu. O que existe aqui é a saída de build de um projeto
-Next.js (pasta `_next/static` + assets públicos), recuperada da hospedagem.
+O site foi construído pelo **Agent Runner da Netlify** (a IA embutida no painel dela),
+não por um fluxo de git tradicional. Por isso nunca houve repositório: o código é
+guardado pela própria Netlify como um zip.
 
-| Recuperado | Perdido |
+Confirmado pela API da Netlify no deploy de produção:
+
+| Campo | Valor | Significado |
+|---|---|---|
+| `deploy_source` | `agent_runner` | Construído pela IA da Netlify |
+| `has_source_zip` | `true` | O fonte está arquivado |
+| `code_origin` | `zip` | Guardado como zip, não em git |
+| `needs_git_sync` | `false` | Ainda não sincronizado com git |
+| `build_settings.repo_url` | vazio | Nenhum repositório conectado |
+
+**O código não se perdeu.** Ele está no painel da Netlify, no projeto
+`stellular-palmier-3d6f3e`, e pode ser sincronizado com o GitHub pela própria interface.
+
+### Como recuperar
+
+1. Entrar em [app.netlify.com](https://app.netlify.com) com `givagoribeirobr@gmail.com`
+2. Abrir o projeto `stellular-palmier-3d6f3e` (givagoribeiro.com.br)
+3. Ir na seção de agentes/IA e localizar o projeto
+4. Usar a opção de conectar ao GitHub — apontar para este repositório
+
+## O que este repositório tem hoje
+
+Snapshot do build de produção, como referência caso o passo acima não funcione.
+
+| Recuperado do bundle | Ausente |
 |---|---|
-| Paleta de cores e design tokens completos | Componentes React (`app/`, `components/`) |
-| Fontes (Montserrat + Inter, 12 arquivos woff2) | Lógica das 4 rotas de API |
-| Todas as imagens em resolução original | `package.json` e dependências |
-| Todos os textos fixos do site | Painel administrativo |
-| Todas as classes Tailwind (design 100% legível) | Chaves e variáveis de ambiente |
-| Configuração de deploy (`netlify.toml`) | Histórico de commits |
+| Paleta e design tokens completos | Componentes React |
+| Fontes (Montserrat + Inter, 12 woff2) | Lógica das 4 rotas de API |
+| Imagens em resolução original | `package.json` |
+| Todos os textos fixos | Variáveis de ambiente |
+| Todas as classes Tailwind | Histórico de commits |
+| **Nomes dos componentes** | |
 
-As classes Tailwind sobreviveram à minificação, então **o layout é reconstruível com
-alta fidelidade** — não é um chute visual.
+As classes Tailwind e os nomes dos componentes sobreviveram à minificação, então uma
+reconstrução manual teria alta fidelidade — mas só faz sentido se a Netlify falhar.
 
 ---
 
@@ -59,16 +84,33 @@ alta fidelidade** — não é um chute visual.
 
 ## Rotas
 
-| Rota | Tipo |
-|---|---|
-| `/` | Landing page |
-| `/noticias` | Listagem de notícias (WordPress) com busca |
-| `/api/posts` | Busca posts do WordPress |
-| `/api/youtube` | Feed de vídeos do canal |
-| `/api/contato` | Formulário "Fale com o Mandato" |
-| `/api/newsletter` | Cadastro de e-mails |
+| Rota | Tipo | Estado em produção |
+|---|---|---|
+| `/` | Landing page | ✅ |
+| `/noticias` | Listagem do WordPress | ✅ |
+| `/api/posts` | Proxy do WordPress | ✅ HTTP 200 |
+| `/api/youtube` | Feed do canal | ✅ HTTP 200 |
+| `/api/contato` | Formulário de contato | 🔴 **HTTP 500** |
+| `/api/newsletter` | Cadastro de e-mails | 🔴 **HTTP 500** |
 
-> As 4 rotas de API precisam ser reescritas do zero — a pasta `.next/server` não foi preservada.
+### 🔴 Quebrado em produção
+
+Verificado em 2026-08-30:
+
+- `/api/contato` → `{"error":"Erro interno do servidor"}`
+- `/api/newsletter` → `{"error":"Erro ao buscar inscrições"}`
+
+**O formulário "Fale com o Mandato" não está funcionando.** Quem preenche recebe erro.
+A mensagem do newsletter indica um banco de dados por trás que não responde — e o
+projeto não tem nenhuma variável de ambiente configurada na Netlify, o que é
+provavelmente a causa.
+
+## Conteúdo (WordPress)
+
+API pública, sem autenticação: `public-api.wordpress.com/wp/v2/sites/givagoribeirobr.wordpress.com`
+
+- **27 posts** publicados
+- Último: *"Revitalização dos mirantes do Perau"* — **22/06/2026**
 
 ## Seções da landing page
 
