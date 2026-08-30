@@ -16,14 +16,14 @@ export function HeroSection() {
       />
       {/* Gradiente nas cores do mandato, garantindo contraste do texto sobre a foto. */}
       <div
-        className="absolute inset-0 bg-linear-to-br from-primary/90 via-primary/70 to-secondary/80"
+        className="absolute inset-0 z-10 bg-linear-to-r from-primary/90 via-primary/80 to-secondary/70"
         aria-hidden="true"
       />
 
       {/* Marca-d'água com o nome, como no site original. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 flex select-none items-center justify-center font-heading text-[22vw] font-bold leading-none text-white/10"
+        className="pointer-events-none absolute inset-0 z-[5] flex select-none items-center justify-center overflow-hidden font-heading text-[22vw] font-bold leading-none text-white/10"
       >
         GIVAGO
       </span>
