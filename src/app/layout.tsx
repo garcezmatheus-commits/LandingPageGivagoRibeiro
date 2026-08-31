@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import { MANDATO } from "@/lib/conteudo";
+import { BarraDeProgresso } from "@/components/barra-de-progresso";
 import "./globals.css";
 
 const inter = Inter({
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Pular para o conteúdo principal
         </a>
+        <BarraDeProgresso />
         {children}
       </body>
     </html>

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { FotoComParallax } from "@/components/ui/foto-com-parallax";
 import { Button } from "@/components/ui/button";
 import { Onda } from "@/components/ui/onda";
 import { MANDATO } from "@/lib/conteudo";
@@ -11,14 +11,7 @@ export function HeroSection() {
       className="relative flex min-h-[36rem] items-center overflow-hidden py-32 md:min-h-[42rem] md:py-40"
       style={{ minHeight: "min(100svh, 52rem)" }}
     >
-      <Image
-        src="/images/hero-bg.webp"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
+      <FotoComParallax src="/images/hero-bg.webp" className="object-cover" />
 
       {/*
         Com o conteúdo centralizado, o véu não pode ser assimétrico: o texto

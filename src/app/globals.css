@@ -187,3 +187,34 @@
     color-mix(in srgb, var(--color-secondary) 14%, transparent) 100%
   );
 }
+
+/*
+  Onda com movimento.
+
+  Água é a biografia do mandato — canoagem, cinco mundiais, a barragem do
+  Campestre. As três cristas deslizam em ritmos diferentes, que é o que faz
+  água parecer água em vez de uma forma balançando.
+
+  Anima só transform, fica no compositor e não força recálculo de layout.
+  Some inteira sob prefers-reduced-motion.
+*/
+@keyframes onda-desliza {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.onda-crista {
+  animation: onda-desliza linear infinite;
+  will-change: transform;
+}
+
+.onda-crista-1 { animation-duration: 22s; }
+.onda-crista-2 { animation-duration: 15s; animation-direction: reverse; }
+.onda-crista-3 { animation-duration: 30s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .onda-crista {
+    animation: none;
+    will-change: auto;
+  }
+}

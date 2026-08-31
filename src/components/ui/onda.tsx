@@ -33,19 +33,25 @@ export function Onda({
         viewBox="0 0 1440 120"
         preserveAspectRatio="none"
         className="block h-[60px] w-full md:h-[90px]"
+        style={{ minWidth: "200%" }}
         fill="currentColor"
         focusable="false"
       >
         {/* Três cristas em profundidades diferentes, como água em camadas. */}
         <path
+          className="onda-crista onda-crista-1"
           d="M0 64c120 24 240 36 360 30s240-30 360-36 240 6 360 24 240 24 360 12v30H0z"
           opacity="0.35"
         />
         <path
+          className="onda-crista onda-crista-2"
           d="M0 82c144 20 288 26 432 16s288-34 432-34 288 22 432 30v26H0z"
           opacity="0.6"
         />
-        <path d="M0 100c180 14 360 18 540 10s360-24 540-20 240 12 360 16v14H0z" />
+        <path
+          className="onda-crista onda-crista-3"
+          d="M0 100c180 14 360 18 540 10s360-24 540-20 240 12 360 16v14H0z"
+        />
       </svg>
     </div>
   );

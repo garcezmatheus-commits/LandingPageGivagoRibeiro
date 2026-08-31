@@ -83,6 +83,24 @@ export function PilaresSection() {
                         {pilar.descricao}
                       </span>
 
+                      {/*
+                        As frentes de ação só apareciam na página interna. Aqui elas
+                        se abrem no hover e no foco pelo teclado: quem passa o olho
+                        já vê o que o pilar entrega, sem precisar clicar.
+                        Fecha-se sob prefers-reduced-motion, mostrando tudo aberto.
+                      */}
+                      <span className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-visible:grid-rows-[1fr] motion-reduce:grid-rows-[1fr] motion-reduce:transition-none">
+                        <span className="overflow-hidden">
+                          <span className="mt-4 flex flex-col gap-2 border-l-2 border-accent pl-4">
+                            {pilar.frentes.map((frente) => (
+                              <span key={frente.titulo} className="block text-sm leading-snug text-white/80">
+                                {frente.titulo}
+                              </span>
+                            ))}
+                          </span>
+                        </span>
+                      </span>
+
                       <span className="mt-5 inline-flex items-center gap-2 font-medium text-accent">
                         Ver as frentes de ação
                         <ArrowRight

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Trophy, Globe, Medal, FileCheck2, CheckCircle2, Landmark } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { NumeroAnimado } from "@/components/ui/numero-animado";
 import { Button } from "@/components/ui/button";
 import { PROJETOS_CONCLUIDOS, PROJETOS_EM_TRAMITE } from "@/lib/conteudo";
 
@@ -57,7 +58,7 @@ function Bloco({
               <span
                 className={`block font-heading text-6xl font-bold leading-[0.9] tracking-tight tabular-nums md:text-7xl ${corValor}`}
               >
-                {item.valor}
+                <NumeroAnimado valor={item.valor} />
               </span>
               <span className="mt-2 block text-lg font-medium leading-tight">{item.rotulo}</span>
               <span className="block text-sm text-muted-foreground">{item.detalhe}</span>
