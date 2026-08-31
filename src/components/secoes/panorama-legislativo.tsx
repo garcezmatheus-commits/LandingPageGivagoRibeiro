@@ -4,78 +4,95 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PROJETOS_CONCLUIDOS, PROJETOS_EM_TRAMITE, type ProjetoDeLei } from "@/lib/conteudo";
 
-function ListaDeProjetos({
-  projetos,
-  Icone,
-  cor,
-  bg,
-}: {
-  projetos: ProjetoDeLei[];
-  Icone: typeof CheckCircle2;
-  cor: string;
-  bg: string;
-}) {
+/**
+ * Os dois grupos não têm o mesmo peso: o que já foi aprovado é resultado, o
+ * que está tramitando é promessa. A coluna dos concluídos vem primeiro e com
+ * mais destaque visual; a dos em trâmite fica mais discreta.
+ */
+
+function Concluido({ projeto }: { projeto: ProjetoDeLei }) {
   return (
-    <ul className="space-y-4">
-      {projetos.map((projeto) => (
-        <li key={projeto.numero}>
-          <Card>
-            <CardContent className="flex gap-4 pt-6">
-              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${bg}`}>
-                <Icone className={`h-5 w-5 ${cor}`} aria-hidden="true" />
-              </div>
-              <div>
-                <div className="mb-1 flex flex-wrap items-center gap-2">
-                  <h4 className="font-heading font-bold leading-snug">{projeto.titulo}</h4>
-                  <Badge className="shrink-0">{projeto.numero}</Badge>
-                </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">{projeto.situacao}</p>
-              </div>
-            </CardContent>
-          </Card>
-        </li>
-      ))}
-    </ul>
+    <Card className="border-primary/25 bg-primary/[0.03]">
+      <CardContent className="flex gap-4 pt-6">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+          <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+        </span>
+        <span className="min-w-0">
+          <span className="mb-1 flex flex-wrap items-center gap-2">
+            <strong className="font-heading text-lg leading-snug">{projeto.titulo}</strong>
+            <Badge className="shrink-0 bg-primary/10 text-primary">{projeto.numero}</Badge>
+          </span>
+          <span className="block text-sm leading-relaxed text-muted-foreground">
+            {projeto.situacao}
+          </span>
+        </span>
+      </CardContent>
+    </Card>
+  );
+}
+
+function EmTramite({ projeto }: { projeto: ProjetoDeLei }) {
+  return (
+    <div className="flex gap-3 border-b border-border py-4 last:border-b-0">
+      <Clock className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-medium leading-snug">{projeto.titulo}</span>
+          <span className="shrink-0 text-xs text-muted-foreground">{projeto.numero}</span>
+        </div>
+        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{projeto.situacao}</p>
+      </div>
+    </div>
   );
 }
 
 export function PanoramaLegislativoSection() {
+  const total = PROJETOS_CONCLUIDOS.length + PROJETOS_EM_TRAMITE.length;
+
   return (
     <section className="py-16 md:py-24" aria-labelledby="panorama-titulo">
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
           <Badge className="mb-3">Panorama Legislativo 2026</Badge>
-          <h2 id="panorama-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
+          <h2
+            id="panorama-titulo"
+            className="text-balance font-heading text-3xl font-bold md:text-4xl"
+          >
             Projetos de Lei do Vereador Givago
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-muted-foreground">
-            Acompanhe o andamento das principais iniciativas e projetos de lei propostos pelo
-            mandato do Vereador Givago Ribeiro, divididos entre as propostas já concluídas e as que
-            seguem em tramitação.
+            {total} iniciativas apresentadas: {PROJETOS_CONCLUIDOS.length} já concluídas e{" "}
+            {PROJETOS_EM_TRAMITE.length} em tramitação na Câmara.
           </p>
         </ScrollReveal>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          <ScrollReveal>
-            <h3 className="font-heading text-xl font-bold">Projetos Finalizados e Concluídos</h3>
-            <p className="mb-5 text-sm text-muted-foreground">Propostas aprovadas e implementadas</p>
-            <ListaDeProjetos
-              projetos={PROJETOS_CONCLUIDOS}
-              Icone={CheckCircle2}
-              cor="text-primary"
-              bg="bg-primary/10"
-            />
+        <div className="grid items-start gap-10 lg:grid-cols-5">
+          <ScrollReveal className="lg:col-span-3">
+            <div className="mb-5 flex items-center gap-2">
+              <h3 className="font-heading text-xl font-bold">Aprovados e implementados</h3>
+              <Badge className="bg-primary/10 text-primary">{PROJETOS_CONCLUIDOS.length}</Badge>
+            </div>
+            <ul className="space-y-4">
+              {PROJETOS_CONCLUIDOS.map((projeto) => (
+                <li key={projeto.numero}>
+                  <Concluido projeto={projeto} />
+                </li>
+              ))}
+            </ul>
           </ScrollReveal>
 
-          <ScrollReveal delay={100}>
-            <h3 className="font-heading text-xl font-bold">Projetos em Trâmite</h3>
-            <p className="mb-5 text-sm text-muted-foreground">Em análise legislativa</p>
-            <ListaDeProjetos
-              projetos={PROJETOS_EM_TRAMITE}
-              Icone={Clock}
-              cor="text-secondary"
-              bg="bg-secondary/10"
-            />
+          <ScrollReveal delay={100} className="lg:col-span-2">
+            <div className="mb-2 flex items-center gap-2">
+              <h3 className="font-heading text-lg font-bold text-muted-foreground">
+                Em tramitação
+              </h3>
+              <Badge>{PROJETOS_EM_TRAMITE.length}</Badge>
+            </div>
+            <div className="rounded-2xl border border-border bg-card px-5 shadow-soft">
+              {PROJETOS_EM_TRAMITE.map((projeto) => (
+                <EmTramite key={projeto.numero} projeto={projeto} />
+              ))}
+            </div>
           </ScrollReveal>
         </div>
       </div>

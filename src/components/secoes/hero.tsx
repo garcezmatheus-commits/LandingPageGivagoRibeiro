@@ -5,9 +5,10 @@ import { MANDATO } from "@/lib/conteudo";
 
 export function HeroSection() {
   return (
-    <section id="inicio" className="relative flex min-h-screen items-center overflow-hidden">
+    <section id="inicio" className="relative flex min-h-[36rem] items-center overflow-hidden py-32 md:min-h-[42rem] md:py-40"
+      style={{ minHeight: "min(100svh, 52rem)" }}>
       <Image
-        src="/images/hero-bg.jpg"
+        src="/images/hero-bg.webp"
         alt=""
         fill
         priority
@@ -28,7 +29,7 @@ export function HeroSection() {
         GIVAGO
       </span>
 
-      <div className="container-custom relative z-10 px-4 py-32 md:px-8">
+      <div className="container-custom relative z-10 px-4 md:px-8">
         <div className="max-w-3xl">
           <p className="mb-4 text-sm font-medium uppercase tracking-widest text-white/80">
             {MANDATO.cargo}

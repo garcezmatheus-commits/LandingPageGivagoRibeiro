@@ -98,7 +98,7 @@ export function ApresentacaoSection() {
           <ScrollReveal className="lg:order-1">
             <div className="overflow-hidden rounded-2xl shadow-soft">
               <Image
-                src="/images/givago-atleta.jpg"
+                src="/images/givago-atleta.webp"
                 alt="Givago Ribeiro como atleta de canoagem"
                 width={600}
                 height={400}

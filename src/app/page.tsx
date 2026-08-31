@@ -1,7 +1,8 @@
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { BotaoContatoFlutuante } from "@/components/botao-contato-flutuante";
 import { HeroSection } from "@/components/secoes/hero";
-import { DestaquesSection } from "@/components/secoes/destaques";
+import { CredenciaisSection } from "@/components/secoes/credenciais";
 import { ApresentacaoSection } from "@/components/secoes/apresentacao";
 import { PanoramaLegislativoSection } from "@/components/secoes/panorama-legislativo";
 import { PilaresSection } from "@/components/secoes/pilares";
@@ -15,7 +16,7 @@ export default function Home() {
       <Header />
       <main id="conteudo">
         <HeroSection />
-        <DestaquesSection />
+        <CredenciaisSection />
         <ApresentacaoSection />
         <PanoramaLegislativoSection />
         <PilaresSection />
@@ -24,6 +25,7 @@ export default function Home() {
         <ContatoSection />
       </main>
       <Footer />
+      <BotaoContatoFlutuante />
     </>
   );
 }
