@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Onda } from "@/components/ui/onda";
 import { MANDATO } from "@/lib/conteudo";
 
 export function HeroSection() {
@@ -64,9 +65,11 @@ export function HeroSection() {
         </div>
       </div>
 
+      <Onda className="text-background" />
+
       <a
         href="#destaques"
-        className="group absolute inset-x-0 bottom-8 z-10 mx-auto flex w-fit flex-col items-center gap-2"
+        className="group absolute inset-x-0 bottom-20 z-30 mx-auto flex w-fit flex-col items-center gap-2 md:bottom-28"
       >
         <span className="text-sm text-white/70 transition-colors group-hover:text-white">
           Rolar para baixo

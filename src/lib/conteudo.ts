@@ -267,10 +267,14 @@ export const PILARES: Pilar[] = [
   },
 ];
 
+export type StatusProjeto = "concluido" | "tramitando" | "parado" | "rejeitado";
+
 export interface ProjetoDeLei {
   titulo: string;
   numero: string;
   situacao: string;
+  /** Por que não avançou. Só faz sentido em "parado" e "rejeitado". */
+  motivo?: string;
 }
 
 export const PROJETOS_CONCLUIDOS: ProjetoDeLei[] = [
@@ -322,6 +326,18 @@ export const PROJETOS_EM_TRAMITE: ProjetoDeLei[] = [
       "Em fase de elaboração de Relatório Final pela Comissão Especial (atualmente sob relatoria do Ver. Guilherme Badke).",
   },
 ];
+
+/**
+ * Projetos que não avançaram, e o motivo.
+ *
+ * Mostrar o que travou é o que separa prestação de contas de propaganda —
+ * quase nenhum mandato publica isso. A lista está vazia de propósito: só
+ * entra aqui informação conferida na Câmara. Enquanto vazia, a seção de
+ * transparência não é exibida.
+ *
+ * Para publicar, adicione objetos com titulo, numero, situacao e motivo.
+ */
+export const PROJETOS_NAO_AVANCARAM: ProjetoDeLei[] = [];
 
 export const BAIRROS = [
   "Campestre",

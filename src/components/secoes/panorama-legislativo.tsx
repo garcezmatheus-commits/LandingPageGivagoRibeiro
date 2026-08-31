@@ -1,8 +1,14 @@
-import { CheckCircle2, Clock } from "lucide-react";
+import { CheckCircle2, Clock, CircleSlash, Info } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { PROJETOS_CONCLUIDOS, PROJETOS_EM_TRAMITE, type ProjetoDeLei } from "@/lib/conteudo";
+import {
+  PROJETOS_CONCLUIDOS,
+  PROJETOS_EM_TRAMITE,
+  PROJETOS_NAO_AVANCARAM,
+  type ProjetoDeLei,
+} from "@/lib/conteudo";
+import { AcompanharProjeto } from "@/components/acompanhar-projeto";
 
 /**
  * Os dois grupos não têm o mesmo peso: o que já foi aprovado é resultado, o
@@ -41,6 +47,32 @@ function EmTramite({ projeto }: { projeto: ProjetoDeLei }) {
           <span className="shrink-0 text-xs text-muted-foreground">{projeto.numero}</span>
         </div>
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{projeto.situacao}</p>
+        <AcompanharProjeto projeto={projeto} />
+      </div>
+    </div>
+  );
+}
+
+/** Projeto que travou ou foi rejeitado, com o motivo à mostra. */
+function NaoAvancou({ projeto }: { projeto: ProjetoDeLei }) {
+  return (
+    <div className="flex gap-3 border-b border-border py-4 last:border-b-0">
+      <CircleSlash className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-medium leading-snug">{projeto.titulo}</span>
+          <span className="shrink-0 text-xs text-muted-foreground">{projeto.numero}</span>
+        </div>
+        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{projeto.situacao}</p>
+        {projeto.motivo && (
+          <p className="mt-2 flex gap-2 rounded-lg bg-muted px-3 py-2 text-sm text-muted-foreground">
+            <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+            <span>
+              <strong className="font-medium text-foreground">Por que não avançou: </strong>
+              {projeto.motivo}
+            </span>
+          </p>
+        )}
       </div>
     </div>
   );
@@ -95,6 +127,26 @@ export function PanoramaLegislativoSection() {
             </div>
           </ScrollReveal>
         </div>
+
+        {PROJETOS_NAO_AVANCARAM.length > 0 && (
+          <ScrollReveal className="mt-12">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft md:p-8">
+              <div className="mb-1 flex flex-wrap items-center gap-2">
+                <h3 className="font-heading text-xl font-bold">O que não avançou</h3>
+                <Badge>{PROJETOS_NAO_AVANCARAM.length}</Badge>
+              </div>
+              <p className="mb-4 max-w-2xl text-sm text-muted-foreground">
+                Prestação de contas também é mostrar o que travou. Abaixo, as propostas que
+                não seguiram adiante e a razão de cada uma.
+              </p>
+              <div>
+                {PROJETOS_NAO_AVANCARAM.map((projeto) => (
+                  <NaoAvancou key={projeto.numero} projeto={projeto} />
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+        )}
       </div>
     </section>
   );

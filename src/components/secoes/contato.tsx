@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Clock, Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { Onda } from "@/components/ui/onda";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -54,7 +55,11 @@ export function ContatoSection() {
   }
 
   return (
-    <section id="contato" className="bg-muted/30 py-16 md:py-24" aria-labelledby="contato-titulo">
+    <section
+      id="contato"
+      className="relative overflow-hidden bg-muted/30 pb-28 pt-16 md:pb-36 md:pt-24"
+      aria-labelledby="contato-titulo"
+    >
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
           <Badge className="mb-3">Participe</Badge>
@@ -300,6 +305,8 @@ export function ContatoSection() {
           </ScrollReveal>
         </div>
       </div>
+
+      <Onda className="text-footer" />
     </section>
   );
 }

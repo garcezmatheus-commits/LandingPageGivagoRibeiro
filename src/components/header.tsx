@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TamanhoDeTexto } from "@/components/tamanho-de-texto";
 import { MANDATO, NAVEGACAO } from "@/lib/conteudo";
 import { cn } from "@/lib/utils";
 
@@ -62,6 +63,10 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <TamanhoDeTexto
+              className={cn("hidden md:flex", rolou || aberto ? "" : "text-white/80")}
+            />
+
             <Button asChild className="hidden sm:inline-flex">
               <Link href="/#contato">Quer ajuda? Fala com a gente</Link>
             </Button>
@@ -96,6 +101,10 @@ export function Header() {
                 </Link>
               </li>
             ))}
+            <li className="flex items-center justify-between border-t border-border py-3">
+              <span className="text-sm font-medium text-muted-foreground">Tamanho do texto</span>
+              <TamanhoDeTexto />
+            </li>
             <li className="py-3">
               <Button asChild className="w-full">
                 <Link href="/#contato" onClick={() => setAberto(false)}>

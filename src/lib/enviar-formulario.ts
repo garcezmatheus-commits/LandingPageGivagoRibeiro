@@ -65,6 +65,10 @@ export async function enviarContato(dados: DadosContato) {
   });
 }
 
+export async function acompanharProjeto(email: string, projeto: string) {
+  await postar("acompanhar-projeto", { email: email.trim(), projeto });
+}
+
 export async function inscreverNewsletter(email: string) {
   await postar("newsletter", { email: email.trim() });
 }
