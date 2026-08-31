@@ -6,12 +6,16 @@ import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
+  // Só os pesos que o site usa: normal, medium e semibold.
+  weight: ["400", "500", "600"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const montserrat = Montserrat({
   subsets: ["latin"],
+  // Montserrat só aparece em títulos, e todos são bold.
+  weight: ["700"],
   variable: "--font-montserrat",
   display: "swap",
 });

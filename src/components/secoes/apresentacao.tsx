@@ -62,6 +62,7 @@ export function ApresentacaoSection() {
                 width={600}
                 height={400}
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
                 className="h-auto w-full object-cover"
               />
             </div>
@@ -104,6 +105,7 @@ export function ApresentacaoSection() {
                 width={600}
                 height={400}
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
                 className="h-auto w-full object-cover"
               />
             </div>

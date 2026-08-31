@@ -1,80 +1,37 @@
-"use client";
-
 import * as React from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
-import { Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const Select = SelectPrimitive.Root;
-const SelectValue = SelectPrimitive.Value;
-
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "flex h-10 w-full items-center justify-between rounded-lg border border-input bg-card px-3 py-2 text-sm",
-      "data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-      className
-    )}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 opacity-50" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-));
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
-
-const SelectContent = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
->(({ className, children, position = "popper", ...props }, ref) => (
-  <SelectPrimitive.Portal>
-    <SelectPrimitive.Content
+/**
+ * Seleção nativa do sistema.
+ *
+ * Substituiu o Select do Radix, que trazia 89 kB de JavaScript junto com o
+ * Checkbox para um formulário no fim da página. O controle nativo custa zero
+ * JavaScript, abre o seletor próprio do celular — melhor em tela pequena — e
+ * já vem com teclado e leitor de tela funcionando.
+ *
+ * A seta é desenhada em background porque `appearance: none` remove a nativa.
+ */
+const Select = React.forwardRef<HTMLSelectElement, React.SelectHTMLAttributes<HTMLSelectElement>>(
+  ({ className, children, ...props }, ref) => (
+    <select
       ref={ref}
-      position={position}
       className={cn(
-        "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground shadow-soft",
-        position === "popper" && "translate-y-1",
+        "flex h-10 w-full appearance-none rounded-lg border border-input bg-card px-3 py-2 pr-9 text-sm",
+        "bg-[length:1.25rem] bg-[right_0.5rem_center] bg-no-repeat",
+        "disabled:cursor-not-allowed disabled:opacity-50",
+        "invalid:text-muted-foreground",
         className
       )}
+      style={{
+        backgroundImage:
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f584f' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
+      }}
       {...props}
     >
-      <SelectPrimitive.Viewport
-        className={cn("p-1", position === "popper" && "w-full min-w-[var(--radix-select-trigger-width)]")}
-      >
-        {children}
-      </SelectPrimitive.Viewport>
-    </SelectPrimitive.Content>
-  </SelectPrimitive.Portal>
-));
-SelectContent.displayName = SelectPrimitive.Content.displayName;
+      {children}
+    </select>
+  )
+);
+Select.displayName = "Select";
 
-const SelectItem = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Item
-    ref={ref}
-    className={cn(
-      "relative flex w-full cursor-pointer select-none items-center rounded py-2 pl-8 pr-2 text-sm outline-hidden",
-      "focus:bg-muted data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
-    )}
-    {...props}
-  >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <SelectPrimitive.ItemIndicator>
-        <Check className="h-4 w-4" />
-      </SelectPrimitive.ItemIndicator>
-    </span>
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-  </SelectPrimitive.Item>
-));
-SelectItem.displayName = SelectPrimitive.Item.displayName;
-
-export { Select, SelectValue, SelectTrigger, SelectContent, SelectItem };
+export { Select };

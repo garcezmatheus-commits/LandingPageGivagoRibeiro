@@ -61,7 +61,20 @@ export function FotoComParallax({
 
   return (
     <div ref={ref} className="absolute inset-0 -bottom-24">
-      <Image src={src} alt="" fill priority sizes="100vw" className={className} />
+      {/*
+        Qualidade 45 porque a foto vive sob um véu de ~80%: acima disso são
+        bytes que ninguém enxerga. Corta 37% do maior elemento da primeira
+        tela, que é o que define a sensação de velocidade.
+      */}
+      <Image
+        src={src}
+        alt=""
+        fill
+        priority
+        quality={45}
+        sizes="100vw"
+        className={className}
+      />
     </div>
   );
 }

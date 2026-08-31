@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select } from "@/components/ui/select";
 import { MANDATO, BAIRROS, ASSUNTOS } from "@/lib/conteudo";
 import { enviarContato, ErroDeEnvio, type Assunto } from "@/lib/enviar-formulario";
 
@@ -138,17 +138,18 @@ export function ContatoSection() {
 
                       <div className="space-y-2">
                         <Label htmlFor="bairro">Bairro</Label>
-                        <Select value={dados.bairro} onValueChange={(v) => alterar("bairro", v)}>
-                          <SelectTrigger id="bairro">
-                            <SelectValue placeholder="Selecione seu bairro" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {BAIRROS.map((b) => (
-                              <SelectItem key={b} value={b}>
-                                {b}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
+                        <Select
+                          id="bairro"
+                          name="bairro"
+                          value={dados.bairro}
+                          onChange={(e) => alterar("bairro", e.target.value)}
+                        >
+                          <option value="">Selecione seu bairro</option>
+                          {BAIRROS.map((b) => (
+                            <option key={b} value={b}>
+                              {b}
+                            </option>
+                          ))}
                         </Select>
                       </div>
                     </div>
@@ -157,17 +158,19 @@ export function ContatoSection() {
                       <Label htmlFor="assunto">
                         Assunto <span className="text-destructive">*</span>
                       </Label>
-                      <Select value={dados.assunto} onValueChange={(v) => alterar("assunto", v)}>
-                        <SelectTrigger id="assunto">
-                          <SelectValue placeholder="Selecione o assunto" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {ASSUNTOS.map((a) => (
-                            <SelectItem key={a} value={a}>
-                              {a}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
+                      <Select
+                        id="assunto"
+                        name="assunto"
+                        required
+                        value={dados.assunto}
+                        onChange={(e) => alterar("assunto", e.target.value)}
+                      >
+                        <option value="">Selecione o assunto</option>
+                        {ASSUNTOS.map((a) => (
+                          <option key={a} value={a}>
+                            {a}
+                          </option>
+                        ))}
                       </Select>
                     </div>
 
@@ -192,8 +195,10 @@ export function ContatoSection() {
                     <div className="flex items-start gap-2">
                       <Checkbox
                         id="lgpd"
+                        name="lgpd"
+                        className="mt-1"
                         checked={dados.lgpd}
-                        onCheckedChange={(v) => alterar("lgpd", v === true)}
+                        onChange={(e) => alterar("lgpd", e.target.checked)}
                       />
                       <Label htmlFor="lgpd" className="text-sm font-normal leading-relaxed">
                         Autorizo o tratamento dos meus dados para retorno deste contato, conforme a{" "}
