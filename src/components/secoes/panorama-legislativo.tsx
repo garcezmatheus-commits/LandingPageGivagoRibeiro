@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock, CircleSlash, Info } from "lucide-react";
+import { CheckCircle2, Clock, CircleSlash, Info, ExternalLink } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { RotuloSecao } from "@/components/ui/rotulo-secao";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,8 +7,10 @@ import {
   PROJETOS_CONCLUIDOS,
   PROJETOS_EM_TRAMITE,
   PROJETOS_NAO_AVANCARAM,
+  PERFIL_CITTA,
   type ProjetoDeLei,
 } from "@/lib/conteudo";
+import { Button } from "@/components/ui/button";
 import { AcompanharProjeto } from "@/components/acompanhar-projeto";
 
 /**
@@ -96,6 +98,16 @@ export function PanoramaLegislativoSection() {
           <p className="mx-auto mt-3 max-w-3xl text-muted-foreground">
             {total} iniciativas apresentadas: {PROJETOS_CONCLUIDOS.length} já concluídas e{" "}
             {PROJETOS_EM_TRAMITE.length} em tramitação na Câmara.
+          </p>
+
+          <Button asChild variant="outline" size="lg" className="mt-6">
+            <a href={PERFIL_CITTA} target="_blank" rel="noopener noreferrer">
+              Consultar na Câmara Municipal
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </Button>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Perfil oficial no sistema legislativo da Câmara de Santa Maria
           </p>
         </ScrollReveal>
 
