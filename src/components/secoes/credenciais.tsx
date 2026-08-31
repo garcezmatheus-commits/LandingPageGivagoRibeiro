@@ -44,23 +44,23 @@ function Bloco({
 
   return (
     <div>
-      <h3 className="font-heading text-xl font-bold">{titulo}</h3>
+      <h3 className="font-heading text-2xl font-bold tracking-tight">{titulo}</h3>
       <p className="mt-1 text-sm text-muted-foreground">{descricao}</p>
 
-      <ul className="mt-6 space-y-4">
+      <ul className="mt-8 space-y-8">
         {itens.map((item) => (
-          <li key={item.rotulo} className="flex items-center gap-4">
-            <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${corIcone}`}>
+          <li key={item.rotulo} className="flex items-start gap-5">
+            <span className={`mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${corIcone}`}>
               <item.icone className="h-5 w-5" aria-hidden="true" />
             </span>
-            <span className="flex min-w-0 items-baseline gap-3">
-              <span className={`font-heading text-3xl font-bold tabular-nums ${corValor}`}>
+            <span className="min-w-0">
+              <span
+                className={`block font-heading text-6xl font-bold leading-[0.9] tracking-tight tabular-nums md:text-7xl ${corValor}`}
+              >
                 {item.valor}
               </span>
-              <span className="min-w-0">
-                <span className="block font-medium leading-tight">{item.rotulo}</span>
-                <span className="block text-sm text-muted-foreground">{item.detalhe}</span>
-              </span>
+              <span className="mt-2 block text-lg font-medium leading-tight">{item.rotulo}</span>
+              <span className="block text-sm text-muted-foreground">{item.detalhe}</span>
             </span>
           </li>
         ))}
@@ -74,9 +74,14 @@ export function CredenciaisSection() {
     <section id="destaques" className="py-16 md:py-24" aria-labelledby="credenciais-titulo">
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
+          <p className="mb-4 flex items-center justify-center gap-3 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            <span className="h-px w-8 bg-accent" aria-hidden="true" />
+            Trajetória
+            <span className="h-px w-8 bg-accent" aria-hidden="true" />
+          </p>
           <h2
             id="credenciais-titulo"
-            className="text-balance font-heading text-3xl font-bold md:text-4xl"
+            className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl"
           >
             Disciplina de atleta, entrega de gestor
           </h2>

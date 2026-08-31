@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GraduationCap, Landmark, Gavel } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { RotuloSecao } from "@/components/ui/rotulo-secao";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,8 +25,8 @@ export function ApresentacaoSection() {
     <section id="apresentacao" className="bg-muted/30 py-16 md:py-24" aria-labelledby="apresentacao-titulo">
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-14 text-center">
-          <Badge className="mb-3">Conheça a Trajetória</Badge>
-          <h2 id="apresentacao-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
+          <RotuloSecao centralizado={true} className="mb-4">Conheça a Trajetória</RotuloSecao>
+          <h2 id="apresentacao-titulo" className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             De Atleta a Gestor Público
           </h2>
           <p className="mt-3 text-muted-foreground">
@@ -54,7 +55,7 @@ export function ApresentacaoSection() {
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <div className="overflow-hidden rounded-2xl shadow-soft">
+            <div className="foto-do-mandato overflow-hidden rounded-2xl shadow-soft">
               <Image
                 src="/images/givago-origens.webp"
                 alt="Givago Ribeiro no bairro Campestre de Santa Maria"
@@ -96,7 +97,7 @@ export function ApresentacaoSection() {
           </ScrollReveal>
 
           <ScrollReveal className="lg:order-1">
-            <div className="overflow-hidden rounded-2xl shadow-soft">
+            <div className="foto-do-mandato overflow-hidden rounded-2xl shadow-soft">
               <Image
                 src="/images/givago-atleta.webp"
                 alt="Givago Ribeiro como atleta de canoagem"

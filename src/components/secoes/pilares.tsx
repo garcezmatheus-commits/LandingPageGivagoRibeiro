@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Leaf, Trophy, Palette, Heart, ArrowRight, type LucideIcon } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { RotuloSecao } from "@/components/ui/rotulo-secao";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PILARES } from "@/lib/conteudo";
@@ -10,14 +11,28 @@ const ICONES: Record<string, LucideIcon> = { Leaf, Trophy, Palette, Heart };
 
 export function PilaresSection() {
   return (
-    <section id="pilares" className="bg-muted/30 py-16 md:py-24" aria-labelledby="pilares-titulo">
-      <div className="container-custom px-4 md:px-8">
-        <ScrollReveal className="mb-12 text-center">
-          <Badge className="mb-3">Plataforma de Governo</Badge>
-          <h2 id="pilares-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
+    <section
+      id="pilares"
+      className="relative overflow-hidden bg-foreground py-20 md:py-28"
+      aria-labelledby="pilares-titulo"
+    >
+      {/* Foto de fundo em baixa opacidade, dando textura sem competir com o texto. */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/images/pilar-sustentabilidade.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.13]"
+        />
+      </div>
+      <div className="container-custom relative z-10 px-4 md:px-8">
+        <ScrollReveal className="mb-14 text-center">
+          <RotuloSecao centralizado claro className="mb-4">Plataforma de Governo</RotuloSecao>
+          <h2 id="pilares-titulo" className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             Pilares Estratégicos
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-2xl text-white/70">
             Quatro eixos que orientam as ações e projetos para uma Santa Maria mais próspera,
             sustentável e acolhedora. Clique em cada pilar para saber mais.
           </p>
@@ -30,7 +45,7 @@ export function PilaresSection() {
               <li key={pilar.id}>
                 <ScrollReveal delay={i * 100}>
                   <Card className="group h-full overflow-hidden transition-shadow hover:shadow-lg">
-                    <div className="relative aspect-video overflow-hidden">
+                    <div className="foto-do-mandato relative aspect-video overflow-hidden">
                       <Image
                         src={pilar.imagem}
                         alt={pilar.imagemAlt}

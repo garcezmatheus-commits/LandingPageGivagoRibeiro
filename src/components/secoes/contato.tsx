@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Clock, Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { RotuloSecao } from "@/components/ui/rotulo-secao";
 import { Onda } from "@/components/ui/onda";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -62,8 +63,8 @@ export function ContatoSection() {
     >
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
-          <Badge className="mb-3">Participe</Badge>
-          <h2 id="contato-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
+          <RotuloSecao centralizado={true} className="mb-4">Participe</RotuloSecao>
+          <h2 id="contato-titulo" className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             Fale com o Mandato
           </h2>
           <p className="mt-3 text-muted-foreground">

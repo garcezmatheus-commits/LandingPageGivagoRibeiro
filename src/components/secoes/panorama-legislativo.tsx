@@ -1,5 +1,6 @@
 import { CheckCircle2, Clock, CircleSlash, Info } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { RotuloSecao } from "@/components/ui/rotulo-secao";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -85,10 +86,10 @@ export function PanoramaLegislativoSection() {
     <section className="py-16 md:py-24" aria-labelledby="panorama-titulo">
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
-          <Badge className="mb-3">Panorama Legislativo 2026</Badge>
+          <RotuloSecao centralizado={true} className="mb-4">Panorama Legislativo 2026</RotuloSecao>
           <h2
             id="panorama-titulo"
-            className="text-balance font-heading text-3xl font-bold md:text-4xl"
+            className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl"
           >
             Projetos de Lei do Vereador Givago
           </h2>

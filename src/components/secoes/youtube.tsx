@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Play, Youtube } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { RotuloSecao } from "@/components/ui/rotulo-secao";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,8 +16,8 @@ export async function YoutubeSection() {
     <section id="youtube" className="py-16 md:py-24" aria-labelledby="youtube-titulo">
       <div className="container-custom px-4 md:px-8">
         <ScrollReveal className="mb-12 text-center">
-          <Badge className="mb-3">YouTube</Badge>
-          <h2 id="youtube-titulo" className="text-balance font-heading text-3xl font-bold md:text-4xl">
+          <RotuloSecao centralizado={true} className="mb-4">YouTube</RotuloSecao>
+          <h2 id="youtube-titulo" className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             Acompanhe-nos pelo YouTube
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">

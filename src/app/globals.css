@@ -155,3 +155,35 @@
   margin-top: 0.5rem;
   text-align: center;
 }
+
+
+/*
+  Tratamento comum das fotos.
+
+  As sete imagens vêm de origens diferentes — celular, drone, cobertura de
+  imprensa — e cada uma tem sua temperatura de cor. Uma gradação leve e uma
+  camada do verde do mandato em multiply fazem o conjunto parecer um sistema,
+  sem virar filtro pesado nem descaracterizar a foto.
+*/
+.foto-do-mandato {
+  position: relative;
+  isolation: isolate;
+}
+
+.foto-do-mandato img {
+  filter: saturate(1.06) contrast(1.04);
+}
+
+.foto-do-mandato::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--color-primary) 16%, transparent) 0%,
+    transparent 45%,
+    color-mix(in srgb, var(--color-secondary) 14%, transparent) 100%
+  );
+}
