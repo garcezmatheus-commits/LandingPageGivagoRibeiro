@@ -41,6 +41,14 @@ const SECOES: SecaoLegal[] = [
     ],
   },
   {
+    titulo: "Cookies e medição de audiência",
+    paragrafos: [
+      "Usamos o Google Analytics para entender como as pessoas navegam pelo site — quais páginas são mais procuradas e por quais caminhos os visitantes chegam. Isso orienta o que o mandato publica.",
+      "A medição só começa depois que você aceita, no aviso exibido na primeira visita. Se recusar, nenhum cookie de análise é instalado e nada é enviado. O site funciona igual nos dois casos.",
+      "O endereço de IP é anonimizado antes do envio, e os dados são tratados de forma agregada: não identificamos visitantes individualmente.",
+    ],
+  },
+  {
     titulo: "Seus Direitos",
     paragrafos: [
       "De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem direito a:",

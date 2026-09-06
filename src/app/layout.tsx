@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 import { MANDATO } from "@/lib/conteudo";
 import { BarraDeProgresso } from "@/components/barra-de-progresso";
+import { Analytics } from "@/components/analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <BarraDeProgresso />
         {children}
+        <Analytics />
       </body>
     </html>
   );
