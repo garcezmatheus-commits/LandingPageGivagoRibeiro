@@ -38,7 +38,7 @@
   --color-destructive: #d40c1a;
   --color-destructive-foreground: #fbf8f1;
 
-  --font-heading: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
+  --font-heading: var(--font-archivo), "Archivo", system-ui, sans-serif;
   --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
 
   --shadow-soft: 0 4px 20px -4px rgb(16 24 16 / 0.12);

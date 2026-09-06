@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Archivo, Inter } from "next/font/google";
 import { MANDATO } from "@/lib/conteudo";
 import { BarraDeProgresso } from "@/components/barra-de-progresso";
 import "./globals.css";
@@ -12,11 +12,12 @@ const inter = Inter({
   display: "swap",
 });
 
-const montserrat = Montserrat({
+const archivo = Archivo({
   subsets: ["latin"],
-  // Montserrat só aparece em títulos, e todos são bold.
+  // Mesma fonte de manchete do Instagram. Só o peso 700: todos os títulos usam
+  // font-bold, então carregar o 800 seria baixar o que ninguém vê.
   weight: ["700"],
-  variable: "--font-montserrat",
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -26,8 +27,9 @@ export const metadata: Metadata = {
     default: `${MANDATO.nome} - ${MANDATO.slogan}`,
     template: `%s | ${MANDATO.nome}`,
   },
+  // Até 160 caracteres: acima disso o Google corta no meio da frase.
   description:
-    "Givago é o gestor público que, com a disciplina de atleta e a visão de quem conhece a cidade em suas raízes, transforma o potencial natural e humano em desenvolvimento concreto e qualidade de vida dos santamarienses.",
+    "Site oficial do vereador Givago Ribeiro, de Santa Maria/RS. Acompanhe projetos de lei, ações nos bairros e fale com o gabinete.",
   keywords: ["Givago Ribeiro", "vereador", "Santa Maria", "RS", "mandato", "Câmara Municipal"],
   authors: [{ name: MANDATO.nome }],
   openGraph: {
@@ -50,7 +52,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${montserrat.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${archivo.variable}`}>
       <body>
         <a
           href="#conteudo"
