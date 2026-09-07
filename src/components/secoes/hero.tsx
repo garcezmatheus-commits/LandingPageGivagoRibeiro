@@ -11,7 +11,14 @@ export function HeroSection() {
       className="relative flex min-h-[36rem] items-center overflow-hidden py-32 md:min-h-[42rem] md:py-40"
       style={{ minHeight: "min(100svh, 52rem)" }}
     >
-      <FotoComParallax src="/images/hero-bg.webp" className="object-cover" />
+      {/*
+        object-position 18% 38%: o rosto do Givago fica na borda esquerda da
+        foto original, na faixa superior-média. Sem isso, o recorte central
+        padrão do object-cover joga a maior parte do rosto para fora da tela
+        em telas estreitas (celular) — o problema mais sério dos dois, porque
+        é onde está a maioria das visitas.
+      */}
+      <FotoComParallax src="/images/hero-bg.webp" className="object-cover object-[18%_38%]" />
 
       {/*
         Com o conteúdo centralizado, o véu não pode ser assimétrico: o texto
@@ -36,7 +43,14 @@ export function HeroSection() {
         GIVAGO
       </span>
 
-      <div className="container-custom relative z-10 px-4 md:px-8">
+      {/*
+        O bloco de conteúdo é centralizado verticalmente na seção, e o
+        indicador de rolagem fica ancorado de forma absoluta no rodapé. Sem
+        reserva de espaço aqui, a centralização empurra a última linha para
+        baixo até colidir com o indicador — reproduzido em todas as larguras
+        testadas (mobile, tablet, desktop). O padding-bottom cria a folga.
+      */}
+      <div className="container-custom relative z-10 px-4 pb-20 md:px-8 md:pb-28">
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
           <p className="mb-5 flex items-center gap-3 text-sm font-medium uppercase tracking-widest text-white">
             <span className="h-px w-10 bg-accent" aria-hidden="true" />
