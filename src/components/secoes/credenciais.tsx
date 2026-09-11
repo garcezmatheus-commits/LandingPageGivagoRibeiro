@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Trophy, Globe, Medal, FileCheck2, CheckCircle2, Landmark } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { NumeroAnimado } from "@/components/ui/numero-animado";
+import { DivisorRemada } from "@/components/ui/divisor-remada";
 import { Button } from "@/components/ui/button";
 import { PROJETOS_CONCLUIDOS, PROJETOS_EM_TRAMITE } from "@/lib/conteudo";
 
@@ -100,7 +101,8 @@ export function CredenciaisSection() {
               destaque="accent"
             />
 
-            <div className="border-t border-border pt-10 md:border-l md:border-t-0 md:pl-12 md:pt-0">
+            <div className="relative pt-10 md:pl-12 md:pt-0">
+              <DivisorRemada />
               <Bloco
                 titulo="No mandato"
                 descricao="O que já foi proposto e aprovado na Câmara."

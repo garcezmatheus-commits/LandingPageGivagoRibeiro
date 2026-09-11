@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TamanhoDeTexto } from "@/components/tamanho-de-texto";
@@ -9,8 +10,10 @@ import { MANDATO, NAVEGACAO } from "@/lib/conteudo";
 import { cn } from "@/lib/utils";
 
 export function Header() {
+  const pathname = usePathname();
   const [aberto, setAberto] = React.useState(false);
   const [rolou, setRolou] = React.useState(false);
+  const [secaoAtiva, setSecaoAtiva] = React.useState("");
 
   React.useEffect(() => {
     const aoRolar = () => setRolou(window.scrollY > 20);
@@ -18,6 +21,33 @@ export function Header() {
     window.addEventListener("scroll", aoRolar, { passive: true });
     return () => window.removeEventListener("scroll", aoRolar);
   }, []);
+
+  // Marca no menu em qual seção o visitante está — a home passa de 10.000px,
+  // sem isso não há como saber "onde estou" rolando, só "quanto falta"
+  // (função da BarraDeProgresso). Só roda na home: é a única página com
+  // essas âncoras.
+  React.useEffect(() => {
+    if (pathname !== "/" || typeof IntersectionObserver === "undefined") return;
+
+    const ids = NAVEGACAO.filter((item) => item.href.startsWith("/#")).map((item) =>
+      item.href.slice(2)
+    );
+    const secoes = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (secoes.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entradas) => {
+        const visivel = entradas.find((e) => e.isIntersecting);
+        if (visivel) setSecaoAtiva(visivel.target.id);
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+
+    secoes.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [pathname]);
 
   return (
     <header
@@ -48,18 +78,26 @@ export function Header() {
           </Link>
 
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Navegação principal">
-            {NAVEGACAO.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "text-sm font-medium transition-colors",
-                  rolou ? "text-muted-foreground hover:text-primary" : "text-white/90 hover:text-white"
-                )}
-              >
-                {item.rotulo}
-              </Link>
-            ))}
+            {NAVEGACAO.map((item) => {
+              const ativo = item.href.startsWith("/#")
+                ? pathname === "/" && item.href.slice(2) === secaoAtiva
+                : pathname === item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={ativo ? "true" : undefined}
+                  className={cn(
+                    "relative pb-1 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 motion-reduce:after:transition-none",
+                    rolou ? "text-muted-foreground hover:text-primary" : "text-white/90 hover:text-white",
+                    ativo && (rolou ? "text-primary after:scale-x-100" : "text-white after:scale-x-100")
+                  )}
+                >
+                  {item.rotulo}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-2">
@@ -88,19 +126,32 @@ export function Header() {
       </div>
 
       {aberto && (
-        <nav className="border-t border-border bg-background lg:hidden" aria-label="Navegação principal">
+        <nav
+          className="menu-mobile-abrir border-t border-border bg-background lg:hidden"
+          aria-label="Navegação principal"
+        >
           <ul className="container-custom flex flex-col px-4 py-2">
-            {NAVEGACAO.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setAberto(false)}
-                  className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-                >
-                  {item.rotulo}
-                </Link>
-              </li>
-            ))}
+            {NAVEGACAO.map((item) => {
+              const ativo = item.href.startsWith("/#")
+                ? pathname === "/" && item.href.slice(2) === secaoAtiva
+                : pathname === item.href;
+
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setAberto(false)}
+                    aria-current={ativo ? "true" : undefined}
+                    className={cn(
+                      "block py-3 text-sm font-medium transition-colors hover:text-primary",
+                      ativo ? "text-primary" : "text-muted-foreground"
+                    )}
+                  >
+                    {item.rotulo}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="flex items-center justify-between border-t border-border py-3">
               <span className="text-sm font-medium text-muted-foreground">Tamanho do texto</span>
               <TamanhoDeTexto />

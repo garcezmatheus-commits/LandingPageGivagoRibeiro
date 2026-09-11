@@ -218,3 +218,32 @@
     will-change: auto;
   }
 }
+
+/*
+  Abertura do menu mobile.
+
+  Renderização condicional (some do DOM ao fechar) continua de propósito —
+  tirar o menu fechado do tab order é o comportamento certo. Anima só a
+  entrada; ao fechar, desmonta sem transição, sem custo de acessibilidade.
+*/
+@keyframes menu-mobile-abrir {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.menu-mobile-abrir {
+  animation: menu-mobile-abrir 200ms ease-out;
+}
+
+/*
+  Frentes de ação do Pilar — abrem no hover/foco por padrão (ver pilares.tsx).
+  Em toque não existe hover: sem esta exceção, a maioria do tráfego (mobile)
+  nunca via essa informação sem entrar na página interna. !important segue o
+  mesmo precedente do bloco de prefers-reduced-motion acima: sobrepor por
+  característica do dispositivo, não por especificidade de classe.
+*/
+@media (hover: none) {
+  .frentes-pilar {
+    grid-template-rows: 1fr !important;
+  }
+}

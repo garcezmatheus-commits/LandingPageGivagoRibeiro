@@ -141,25 +141,35 @@ export function PanoramaLegislativoSection() {
           </ScrollReveal>
         </div>
 
-        {PROJETOS_NAO_AVANCARAM.length > 0 && (
-          <ScrollReveal className="mt-12">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft md:p-8">
-              <div className="mb-1 flex flex-wrap items-center gap-2">
-                <h3 className="font-heading text-xl font-bold">O que não avançou</h3>
-                <Badge>{PROJETOS_NAO_AVANCARAM.length}</Badge>
-              </div>
-              <p className="mb-4 max-w-2xl text-sm text-muted-foreground">
-                Prestação de contas também é mostrar o que travou. Abaixo, as propostas que
-                não seguiram adiante e a razão de cada uma.
-              </p>
+        <ScrollReveal className="mt-12">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-soft md:p-8">
+            <div className="mb-1 flex flex-wrap items-center gap-2">
+              <h3 className="font-heading text-xl font-bold">O que não avançou</h3>
+              {PROJETOS_NAO_AVANCARAM.length > 0 && <Badge>{PROJETOS_NAO_AVANCARAM.length}</Badge>}
+            </div>
+            <p className="mb-4 max-w-2xl text-sm text-muted-foreground">
+              Prestação de contas também é mostrar o que travou.
+              {PROJETOS_NAO_AVANCARAM.length > 0
+                ? " Abaixo, as propostas que não seguiram adiante e a razão de cada uma."
+                : ""}
+            </p>
+            {PROJETOS_NAO_AVANCARAM.length > 0 ? (
               <div>
                 {PROJETOS_NAO_AVANCARAM.map((projeto) => (
                   <NaoAvancou key={projeto.numero} projeto={projeto} />
                 ))}
               </div>
-            </div>
-          </ScrollReveal>
-        )}
+            ) : (
+              <p className="flex items-start gap-2 rounded-lg bg-muted px-3 py-2.5 text-sm text-muted-foreground">
+                <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>
+                  Levantamento em andamento — o que travou entra aqui assim que for conferido na
+                  Câmara.
+                </span>
+              </p>
+            )}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

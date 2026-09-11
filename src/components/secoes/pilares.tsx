@@ -90,7 +90,7 @@ export function PilaresSection() {
                         já vê o que o pilar entrega, sem precisar clicar.
                         Fecha-se sob prefers-reduced-motion, mostrando tudo aberto.
                       */}
-                      <span className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-visible:grid-rows-[1fr] motion-reduce:grid-rows-[1fr] motion-reduce:transition-none">
+                      <span className="frentes-pilar grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-visible:grid-rows-[1fr] motion-reduce:grid-rows-[1fr] motion-reduce:transition-none">
                         <span className="overflow-hidden">
                           <span className="mt-4 flex flex-col gap-2 border-l-2 border-accent pl-4">
                             {pilar.frentes.map((frente) => (
