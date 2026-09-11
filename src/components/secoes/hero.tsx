@@ -12,13 +12,16 @@ export function HeroSection() {
       style={{ minHeight: "min(100svh, 52rem)" }}
     >
       {/*
-        object-position 18% 38%: o rosto do Givago fica na borda esquerda da
-        foto original, na faixa superior-média. Sem isso, o recorte central
-        padrão do object-cover joga a maior parte do rosto para fora da tela
-        em telas estreitas (celular) — o problema mais sério dos dois, porque
-        é onde está a maioria das visitas.
+        object-position 18% 60%: o rosto do Givago fica na borda esquerda da
+        foto original, na faixa superior-média. O eixo X (18%) é o que importa
+        em tela estreita (celular) — sem ele o recorte central padrão do
+        object-cover joga a maior parte do rosto pra fora, e é onde está a
+        maioria das visitas. O eixo Y (60%) só tem efeito em telas largas:
+        a seção tem altura travada em 52rem, então acima de ~1480px de
+        largura a foto sobra na vertical, e aumentar Y sobe o rosto dentro
+        desse recorte (ver ajuste de 2026-09-11, pedido do Matheus).
       */}
-      <FotoComParallax src="/images/hero-bg.webp" className="object-cover object-[18%_38%]" />
+      <FotoComParallax src="/images/hero-bg.webp" className="object-cover object-[18%_60%]" />
 
       {/*
         Com o conteúdo centralizado, o véu não pode ser assimétrico: o texto
