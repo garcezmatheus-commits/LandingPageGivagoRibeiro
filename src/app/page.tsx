@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/secoes/hero";
 import { CredenciaisSection } from "@/components/secoes/credenciais";
 import { ApresentacaoSection } from "@/components/secoes/apresentacao";
 import { PanoramaLegislativoSection } from "@/components/secoes/panorama-legislativo";
+import { XisSection } from "@/components/secoes/xis";
 import { FraseSection } from "@/components/secoes/frase";
 import { PilaresSection } from "@/components/secoes/pilares";
 import { NoticiasSection } from "@/components/secoes/noticias";
@@ -20,6 +21,7 @@ export default function Home() {
         <CredenciaisSection />
         <ApresentacaoSection />
         <PanoramaLegislativoSection />
+        <XisSection />
         <FraseSection />
         <PilaresSection />
         <NoticiasSection />
