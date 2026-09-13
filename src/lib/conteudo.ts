@@ -297,9 +297,9 @@ export const PROJETOS_CONCLUIDOS: ProjetoDeLei[] = [
   },
   {
     titulo: "Distrito Verde",
-    numero: "PL nº 10216/2026",
+    numero: "PL nº 10216/2026 → Lei nº 7141/2026",
     situacao:
-      'Projeto de preservação ambiental e desenvolvimento sustentável, já marcado como "Concluído" no sistema legislativo.',
+      "Institui o Polo de Preservação Ambiental e Desenvolvimento Sustentável, sancionado em 2026.",
   },
 ];
 
