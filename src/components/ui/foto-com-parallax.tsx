@@ -1,10 +1,9 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 
 /**
- * Foto de fundo que desliza mais devagar que a rolagem.
+ * Camada de fundo que desliza mais devagar que a rolagem.
  *
  * Dá profundidade ao hero: a cidade "fica" enquanto o conteúdo sobe. O
  * deslocamento é pequeno de propósito — a diretriz é de 5% a 15%, acima disso
@@ -12,14 +11,11 @@ import Image from "next/image";
  *
  * Só a camada decorativa se move; texto e botões nunca. E quem pediu menos
  * movimento recebe a foto parada.
+ *
+ * Recebe as fotos como filhos: no hero são várias (o carrossel de entregas) e
+ * todas precisam andar juntas, senão a troca de slide "pula" de altura.
  */
-export function FotoComParallax({
-  src,
-  className,
-}: {
-  src: string;
-  className?: string;
-}) {
+export function FotoComParallax({ children }: { children: React.ReactNode }) {
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -61,20 +57,7 @@ export function FotoComParallax({
 
   return (
     <div ref={ref} className="absolute inset-0 -bottom-24">
-      {/*
-        Qualidade 45 porque a foto vive sob um véu de ~80%: acima disso são
-        bytes que ninguém enxerga. Corta 37% do maior elemento da primeira
-        tela, que é o que define a sensação de velocidade.
-      */}
-      <Image
-        src={src}
-        alt=""
-        fill
-        priority
-        quality={45}
-        sizes="100vw"
-        className={className}
-      />
+      {children}
     </div>
   );
 }

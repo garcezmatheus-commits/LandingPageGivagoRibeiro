@@ -247,3 +247,98 @@
     grid-template-rows: 1fr !important;
   }
 }
+
+/*
+  Carrossel do hero (hero.tsx).
+
+  A foto nova entra varrendo a tela de lado, como uma remada: um recorte
+  (clip-path) abre da borda para o centro enquanto a foto por baixo termina de
+  deslizar, e a foto que sai recua para o lado oposto. O texto antigo sai
+  rápido; o novo entra depois, com o título palavra por palavra (BlurText) e o
+  resto em seguida. Saída mais rápida que entrada, para nunca haver dois
+  textos disputando a leitura.
+
+  Nada disso roda na primeira pintura (.hero-trocou só entra depois da
+  primeira troca). Sob prefers-reduced-motion a regra global zera as durações
+  e a troca vira corte seco; a rotação automática nem liga.
+*/
+.hero-carrossel {
+  --hero-troca: 1100ms;
+  --hero-varre: cubic-bezier(0.76, 0, 0.24, 1);
+  --dir: 1;
+}
+.hero-carrossel[data-dir="-1"] { --dir: -1; }
+
+.hero-fundo {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.hero-fundo[data-estado="ativo"] { visibility: visible; z-index: 2; }
+.hero-fundo[data-estado="saindo"] { visibility: visible; z-index: 1; }
+
+.hero-fundo-movel {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-trocou .hero-fundo[data-estado="ativo"] {
+  animation: hero-varre-da-direita var(--hero-troca) var(--hero-varre) both;
+}
+.hero-trocou[data-dir="-1"] .hero-fundo[data-estado="ativo"] {
+  animation-name: hero-varre-da-esquerda;
+}
+.hero-trocou .hero-fundo[data-estado="ativo"] .hero-fundo-movel {
+  animation: hero-foto-chega var(--hero-troca) var(--hero-varre) both;
+}
+.hero-trocou .hero-fundo[data-estado="saindo"] .hero-fundo-movel {
+  animation: hero-foto-recua var(--hero-troca) var(--hero-varre) both;
+}
+
+@keyframes hero-varre-da-direita {
+  from { clip-path: inset(0 0 0 100%); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes hero-varre-da-esquerda {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes hero-foto-chega {
+  from { transform: translate3d(calc(var(--dir) * 18%), 0, 0) scale(1.06); }
+  to   { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes hero-foto-recua {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(var(--dir) * -24%), 0, 0); }
+}
+
+.hero-texto {
+  visibility: hidden;
+  opacity: 0;
+}
+.hero-texto[data-estado="ativo"] { visibility: visible; opacity: 1; }
+.hero-texto[data-estado="saindo"] {
+  visibility: visible;
+  animation: hero-texto-sai 380ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+@keyframes hero-texto-sai {
+  from { opacity: 1; transform: translate3d(0, 0, 0); }
+  to   { opacity: 0; transform: translate3d(calc(var(--dir) * -40px), 0, 0); }
+}
+
+.hero-trocou .hero-texto[data-estado="ativo"] .hero-revela {
+  animation: hero-revela 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--atraso, 150ms) both;
+}
+@keyframes hero-revela {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Barra de tempo do slide ativo. O fim dela é o que avança o carrossel. */
+.hero-progresso {
+  transform: scaleX(0);
+  animation: hero-progresso var(--duracao, 6000ms) linear forwards;
+}
+@keyframes hero-progresso {
+  to { transform: scaleX(1); }
+}

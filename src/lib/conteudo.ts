@@ -407,3 +407,90 @@ export const TRAJETORIA = {
     "Presidente da Câmara de Vereadores (2023)",
   ],
 } as const;
+
+/**
+ * Entregas que se revezam no hero, depois da tela principal.
+ *
+ * Título no formato que o Givago pediu: a dor das pessoas, dois pontos, a
+ * solução do mandato. A primeira parte sai em amarelo.
+ *
+ * Obra executada pela Prefeitura aparece com a Prefeitura como fonte e sem
+ * valores: o mandato articulou a demanda, não executou a obra.
+ *
+ * `foto` usa classes literais de object-position porque o Tailwind só gera
+ * classe que encontra escrita no código.
+ */
+export interface EntregaHero {
+  id: string;
+  rotulo: string;
+  dor: string;
+  solucao: string;
+  texto: string;
+  fonte: string;
+  imagem: string;
+  alt: string;
+  foto: string;
+}
+
+export const ENTREGAS_HERO: EntregaHero[] = [
+  {
+    id: "rua-garibaldi",
+    rotulo: "Rua Garibaldi",
+    dor: "Mais mobilidade no Campestre:",
+    solucao: "Rua Garibaldi pavimentada",
+    texto:
+      "A Rua Garibaldi Luiz Schimitz ganhou pavimentação completa, sinalização e calçada. Uma demanda do bairro que o mandato levou adiante até virar obra.",
+    fonte: "Obra da Prefeitura de Santa Maria",
+    imagem: "/images/entregas/rua-garibaldi.webp",
+    alt: "Givago na Rua Garibaldi Luiz Schimitz recém pavimentada",
+    foto: "object-cover object-[40%_62%]",
+  },
+  {
+    id: "ubs-campestre",
+    rotulo: "UBS Campestre",
+    dor: "Saúde mais perto de casa:",
+    solucao: "a UBS do Campestre saiu do papel",
+    texto:
+      "Com a ordem de serviço assinada, as máquinas já trabalham no terreno da nova Unidade Básica de Saúde do Campestre do Menino Deus.",
+    fonte: "Obra da Prefeitura de Santa Maria",
+    imagem: "/images/entregas/ubs-campestre.webp",
+    alt: "Máquinas trabalhando no terreno da UBS Campestre, vista de drone",
+    foto: "object-cover object-[55%_50%]",
+  },
+  {
+    id: "conteineres",
+    rotulo: "Contêineres",
+    dor: "Lixo no lugar certo:",
+    solucao: "contêineres no Campestre",
+    texto:
+      "Contêineres de resíduos instalados no bairro garantem a destinação correta do lixo e ruas mais limpas no dia a dia.",
+    fonte: "Emenda do mandato",
+    imagem: "/images/entregas/conteineres.webp",
+    alt: "Givago ao lado de um contêiner de resíduos da Prefeitura de Santa Maria",
+    foto: "object-cover object-[70%_40%]",
+  },
+  {
+    id: "jesma",
+    rotulo: "JESMA",
+    dor: "Mais esporte na escola:",
+    solucao: "os Jogos Escolares viraram lei",
+    texto:
+      "A Lei nº 6.643/2022, de autoria do Givago, colocou o JESMA, os Jogos Escolares de Santa Maria, no calendário oficial da cidade.",
+    fonte: "Lei Municipal nº 6.643/2022",
+    imagem: "/images/entregas/jesma.webp",
+    alt: "Estudantes correndo na pista de atletismo durante os jogos escolares",
+    foto: "object-cover object-[50%_70%]",
+  },
+  {
+    id: "canoagem",
+    rotulo: "Canoagem",
+    dor: "Oportunidade para os jovens:",
+    solucao: "canoagem no Distrito Verde revela campeões",
+    texto:
+      "Projeto desenvolvido pela ASENA no Distrito Verde forma talentos, fortalece o esporte e transforma realidades.",
+    fonte: "Projeto ASENA no Distrito Verde",
+    imagem: "/images/entregas/canoagem.webp",
+    alt: "Dois atletas da ASENA comemorando dentro do caiaque",
+    foto: "object-cover object-[50%_45%]",
+  },
+];
