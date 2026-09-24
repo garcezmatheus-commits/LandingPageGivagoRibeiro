@@ -412,7 +412,9 @@ export const TRAJETORIA = {
  * Entregas que se revezam no hero, depois da tela principal.
  *
  * Título no formato que o Givago pediu: a dor das pessoas, dois pontos, a
- * solução do mandato. A primeira parte sai em amarelo.
+ * solução do mandato. A primeira parte sai em amarelo. O título fala da
+ * cidade inteira (Santa Maria), não do bairro: o bairro fica no texto de
+ * apoio, que é onde está o fato.
  *
  * Obra executada pela Prefeitura aparece com a Prefeitura como fonte e sem
  * valores: o mandato articulou a demanda, não executou a obra.
@@ -436,8 +438,8 @@ export const ENTREGAS_HERO: EntregaHero[] = [
   {
     id: "rua-garibaldi",
     rotulo: "Rua Garibaldi",
-    dor: "Mais mobilidade no Campestre:",
-    solucao: "Rua Garibaldi pavimentada",
+    dor: "Mais mobilidade em Santa Maria:",
+    solucao: "rua pavimentada, bairro conectado",
     texto:
       "A Rua Garibaldi Luiz Schimitz ganhou pavimentação completa, sinalização e calçada. Uma demanda do bairro que o mandato levou adiante até virar obra.",
     fonte: "Obra da Prefeitura de Santa Maria",
@@ -448,8 +450,8 @@ export const ENTREGAS_HERO: EntregaHero[] = [
   {
     id: "ubs-campestre",
     rotulo: "UBS Campestre",
-    dor: "Saúde mais perto de casa:",
-    solucao: "a UBS do Campestre saiu do papel",
+    dor: "Saúde perto de casa:",
+    solucao: "Santa Maria ganha uma nova UBS",
     texto:
       "Com a ordem de serviço assinada, as máquinas já trabalham no terreno da nova Unidade Básica de Saúde do Campestre do Menino Deus.",
     fonte: "Obra da Prefeitura de Santa Maria",
@@ -460,8 +462,8 @@ export const ENTREGAS_HERO: EntregaHero[] = [
   {
     id: "conteineres",
     rotulo: "Contêineres",
-    dor: "Lixo no lugar certo:",
-    solucao: "contêineres no Campestre",
+    dor: "Cidade mais limpa:",
+    solucao: "contêineres contra o lixo na rua",
     texto:
       "Contêineres de resíduos instalados no bairro garantem a destinação correta do lixo e ruas mais limpas no dia a dia.",
     // "Iniciativa", não "emenda": o Relatório de Mandato registra a instalação
@@ -476,7 +478,7 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     id: "jesma",
     rotulo: "JESMA",
     dor: "Mais esporte na escola:",
-    solucao: "os Jogos Escolares viraram lei",
+    solucao: "os Jogos Escolares de Santa Maria viraram lei",
     texto:
       "A Lei nº 6.643/2022, de autoria do Givago, colocou o JESMA, os Jogos Escolares de Santa Maria, no calendário oficial da cidade.",
     fonte: "Lei Municipal nº 6.643/2022",
@@ -488,7 +490,7 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     id: "canoagem",
     rotulo: "Canoagem",
     dor: "Oportunidade para os jovens:",
-    solucao: "canoagem no Distrito Verde revela campeões",
+    solucao: "o esporte que forma campeões em Santa Maria",
     texto:
       "Projeto desenvolvido pela ASENA no Distrito Verde forma talentos, fortalece o esporte e transforma realidades.",
     fonte: "Projeto ASENA no Distrito Verde",
