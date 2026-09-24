@@ -18,7 +18,7 @@ export async function YoutubeSection() {
         <ScrollReveal className="mb-12 text-center">
           <RotuloSecao centralizado={true} className="mb-4">YouTube</RotuloSecao>
           <h2 id="youtube-titulo" className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            Acompanhe-nos pelo YouTube
+            Sem tempo para ler? Veja em vídeo o que o mandato fez
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
             Assista aos vídeos do mandato, acompanhe as ações em Santa Maria e fique por dentro de

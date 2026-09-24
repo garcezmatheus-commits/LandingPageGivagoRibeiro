@@ -26,7 +26,7 @@ export async function NoticiasSection() {
         <ScrollReveal className="mb-12 text-center">
           <RotuloSecao centralizado={true} className="mb-4">Acompanhe</RotuloSecao>
           <h2 id="noticias-titulo" className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            Notícias e Transparência
+            Você não precisa adivinhar o que o mandato faz: acompanhe aqui
           </h2>
           <p className="mt-3 text-muted-foreground">
             Acompanhe ações, projetos, agendas e resultados do mandato.

@@ -95,7 +95,7 @@ export function PanoramaLegislativoSection() {
             id="panorama-titulo"
             className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl"
           >
-            Projetos de Lei do Vereador Givago
+            Promessa não basta: acompanhe cada lei do mandato
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-muted-foreground">
             {total} iniciativas apresentadas: {PROJETOS_CONCLUIDOS.length} já concluídas e{" "}

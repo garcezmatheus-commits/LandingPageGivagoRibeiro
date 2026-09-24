@@ -65,7 +65,7 @@ export function ContatoSection() {
         <ScrollReveal className="mb-12 text-center">
           <RotuloSecao centralizado={true} className="mb-4">Participe</RotuloSecao>
           <h2 id="contato-titulo" className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            Fale com o Mandato
+            Problema no seu bairro? Fale direto com o gabinete
           </h2>
           <p className="mt-3 text-muted-foreground">
             Sua voz importa. Envie sugestões, demandas do seu bairro ou convites de agenda.

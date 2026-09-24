@@ -27,7 +27,7 @@ export function ApresentacaoSection() {
         <ScrollReveal className="mb-14 text-center">
           <RotuloSecao centralizado={true} className="mb-4">Conheça a Trajetória</RotuloSecao>
           <h2 id="apresentacao-titulo" className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            De Atleta a Gestor Público
+            Encontrou o bairro parado e decidiu mudar: de atleta a vereador
           </h2>
           <p className="mt-3 text-muted-foreground">
             Uma jornada de raízes, disciplina e compromisso com Santa Maria

@@ -32,7 +32,7 @@ export function PilaresSection() {
             id="pilares-titulo"
             className="text-balance font-heading text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
           >
-            Pilares Estratégicos
+            Os problemas de Santa Maria e o plano para cada um
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-white/70">
             Quatro eixos que orientam as ações e projetos para uma Santa Maria mais próspera,
@@ -77,7 +77,7 @@ export function PilaresSection() {
                       </span>
 
                       <span className="block text-balance font-heading text-2xl font-bold leading-tight text-white md:text-3xl">
-                        {pilar.titulo}
+                        {pilar.chamada}
                       </span>
 
                       <span className="mt-3 block max-w-md leading-relaxed text-white/75">

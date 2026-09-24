@@ -84,6 +84,12 @@ export interface Pilar {
   slug: string;
   icone: string;
   titulo: string;
+  /**
+   * Título do card na página inicial: problema da cidade + frente de trabalho,
+   * a pedido do Givago. É plataforma, não entrega, então nunca "criamos".
+   * A página do pilar mantém o titulo completo.
+   */
+  chamada: string;
   tituloCurto: string;
   descricao: string;
   subtitulo: string;
@@ -102,6 +108,7 @@ export const PILARES: Pilar[] = [
     slug: "pilar-1",
     icone: "Leaf",
     titulo: "Desenvolvimento Sustentável e Inovação",
+    chamada: "Emprego sem destruir a natureza: desenvolvimento sustentável e inovação",
     tituloCurto: "Desenvolvimento Sustentável",
     descricao:
       "Transformar a vocação natural de Santa Maria em desenvolvimento econômico, com inovação, empreendedorismo e proteção ambiental.",
@@ -145,6 +152,7 @@ export const PILARES: Pilar[] = [
     slug: "pilar-2",
     icone: "Trophy",
     titulo: "Esporte como Ferramenta de Educação",
+    chamada: "Criança no esporte, criança na escola: esporte como ferramenta de educação",
     tituloCurto: "Esporte como Educação",
     descricao:
       "O esporte como caminho para a formação cidadã, melhoria do desempenho escolar e inclusão social.",
@@ -187,6 +195,7 @@ export const PILARES: Pilar[] = [
     slug: "pilar-3",
     icone: "Palette",
     titulo: "Valorização da Identidade Local, Cultura e Economia Criativa",
+    chamada: "Para o talento local virar renda: cultura e economia criativa",
     tituloCurto: "Cultura e Economia Criativa",
     descricao:
       "Fortalecer a cultura, a memória e as expressões criativas de Santa Maria, ativando a economia por meio de turismo e festivais.",
@@ -229,6 +238,7 @@ export const PILARES: Pilar[] = [
     slug: "pilar-4",
     icone: "Heart",
     titulo: "Qualidade de Vida e Cuidado nos Bairros",
+    chamada: "Nenhum bairro esquecido: qualidade de vida e cuidado nos bairros",
     tituloCurto: "Qualidade de Vida nos Bairros",
     descricao:
       "Cuidar do que importa no dia a dia: saúde perto de casa, educação acolhedora, ruas seguras e praças vivas.",
