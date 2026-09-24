@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Trilha } from "@/components/trilha";
 import Link from "next/link";
 import { Instagram } from "lucide-react";
 import { Header } from "@/components/header";
@@ -30,6 +31,7 @@ export default async function PaginaDeNoticias() {
       <main id="conteudo">
         <section className="bg-primary pb-16 pt-32 md:pb-20 md:pt-40">
           <div className="container-custom px-4 md:px-8">
+            <Trilha claro passos={[{ rotulo: "Notícias" }]} />
             <Badge className="mb-3 bg-white/15 text-primary-foreground">Blog do Mandato</Badge>
             <h1 className="font-heading text-3xl font-bold text-primary-foreground md:text-5xl">
               Notícias

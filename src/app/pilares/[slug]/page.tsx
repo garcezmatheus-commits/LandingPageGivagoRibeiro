@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Trilha } from "@/components/trilha";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -51,6 +52,7 @@ export default async function PaginaDePilar({ params }: { params: Promise<{ slug
           <div className="absolute inset-0 bg-linear-to-br from-primary/90 to-secondary/80" aria-hidden="true" />
 
           <div className="container-custom relative z-10 px-4 py-32 md:px-8">
+            <Trilha claro passos={[{ rotulo: "Pilares", href: "/#pilares" }, { rotulo: pilar.tituloCurto }]} />
             <div className="mb-4 flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
                 <Icone className="h-6 w-6 text-white" aria-hidden="true" />

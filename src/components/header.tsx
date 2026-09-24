@@ -13,6 +13,10 @@ export function Header() {
   const pathname = usePathname();
   const [aberto, setAberto] = React.useState(false);
   const [rolou, setRolou] = React.useState(false);
+  // Só a home, a lista de notícias e os pilares abrem com foto ou faixa escura.
+  // Nas outras páginas o topo é claro: cabeçalho transparente com letra branca sumia.
+  const topoEscuro = pathname === "/" || pathname === "/noticias" || pathname.startsWith("/pilares/");
+  const solido = rolou || aberto || !topoEscuro;
   const [secaoAtiva, setSecaoAtiva] = React.useState("");
 
   React.useEffect(() => {
@@ -53,7 +57,7 @@ export function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        rolou || aberto ? "bg-background/95 shadow-soft backdrop-blur-sm" : "bg-transparent"
+        solido ? "bg-background/95 shadow-soft backdrop-blur-sm" : "bg-transparent"
       )}
     >
       <div className="container-custom px-4 md:px-8">
@@ -62,7 +66,7 @@ export function Header() {
             <span
               className={cn(
                 "font-heading text-xl font-bold transition-colors",
-                rolou || aberto ? "text-foreground" : "text-white"
+                solido ? "text-foreground" : "text-white"
               )}
             >
               {MANDATO.nome}
@@ -70,7 +74,7 @@ export function Header() {
             <span
               className={cn(
                 "text-xs transition-colors",
-                rolou || aberto ? "text-muted-foreground" : "text-white/80"
+                solido ? "text-muted-foreground" : "text-white/80"
               )}
             >
               {MANDATO.cargo}
@@ -90,8 +94,8 @@ export function Header() {
                   aria-current={ativo ? "true" : undefined}
                   className={cn(
                     "relative pb-1 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 motion-reduce:after:transition-none",
-                    rolou ? "text-muted-foreground hover:text-primary" : "text-white/90 hover:text-white",
-                    ativo && (rolou ? "text-primary after:scale-x-100" : "text-white after:scale-x-100")
+                    solido ? "text-muted-foreground hover:text-primary" : "text-white/90 hover:text-white",
+                    ativo && (solido ? "text-primary after:scale-x-100" : "text-white after:scale-x-100")
                   )}
                 >
                   {item.rotulo}
@@ -103,7 +107,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <TamanhoDeTexto
               className="hidden md:flex"
-              claro={!(rolou || aberto)}
+              claro={!solido}
             />
 
             <Button asChild className="hidden sm:inline-flex">
@@ -117,7 +121,7 @@ export function Header() {
               aria-expanded={aberto}
               className={cn(
                 "rounded-lg p-2 lg:hidden",
-                rolou || aberto ? "text-foreground" : "text-white"
+                solido ? "text-foreground" : "text-white"
               )}
             >
               {aberto ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

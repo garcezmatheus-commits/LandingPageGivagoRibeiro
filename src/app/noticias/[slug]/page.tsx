@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Trilha } from "@/components/trilha";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -44,6 +45,7 @@ export default async function PaginaDeNoticia({ params }: { params: Promise<{ sl
       <main id="conteudo">
         <article className="pb-16 pt-32 md:pt-40">
           <div className="container-custom max-w-3xl px-4 md:px-8">
+            <Trilha passos={[{ rotulo: "Notícias", href: "/noticias" }, { rotulo: noticia.titulo }]} />
             <p className="mb-3 flex items-center gap-1.5 text-sm text-muted-foreground">
               <Calendar className="h-4 w-4" aria-hidden="true" />
               <time dateTime={noticia.data}>{formatarData(noticia.data)}</time>

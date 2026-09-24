@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MapPin, Phone, Mail, Clock, Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { RotuloSecao } from "@/components/ui/rotulo-secao";
@@ -17,7 +18,7 @@ import { Select } from "@/components/ui/select";
 import { MANDATO, BAIRROS, ASSUNTOS } from "@/lib/conteudo";
 import { enviarContato, ErroDeEnvio, type Assunto } from "@/lib/enviar-formulario";
 
-type Estado = "parado" | "enviando" | "ok" | "erro";
+type Estado = "parado" | "enviando" | "erro";
 
 const VAZIO = {
   nome: "",
@@ -66,6 +67,7 @@ function invalido(campo: Campo, erros: Erros) {
 
 export function ContatoSection() {
   const [dados, setDados] = React.useState(VAZIO);
+  const router = useRouter();
   const [estado, setEstado] = React.useState<Estado>("parado");
   const [erro, setErro] = React.useState("");
   const [erros, setErros] = React.useState<Erros>({});
@@ -95,8 +97,8 @@ export function ContatoSection() {
 
     try {
       await enviarContato({ ...dados, assunto: dados.assunto as Assunto });
-      setEstado("ok");
-      setDados(VAZIO);
+      // Página própria de confirmação: cada visita a /obrigado é uma mensagem recebida.
+      router.push("/obrigado");
     } catch (e) {
       setEstado("erro");
       setErro(
@@ -126,18 +128,6 @@ export function ContatoSection() {
           <ScrollReveal className="lg:col-span-2">
             <Card>
               <CardContent className="pt-6">
-                {estado === "ok" ? (
-                  <div className="py-12 text-center" role="status" aria-live="polite">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                      <CheckCircle2 className="h-8 w-8 text-primary" aria-hidden="true" />
-                    </div>
-                    <h3 className="mb-2 font-heading text-xl font-bold">Mensagem enviada!</h3>
-                    <p className="text-muted-foreground">A equipe do gabinete retornará em breve.</p>
-                    <Button className="mt-6" variant="outline" onClick={() => setEstado("parado")}>
-                      Enviar outra mensagem
-                    </Button>
-                  </div>
-                ) : (
                   <form onSubmit={enviar} className="space-y-5" noValidate>
                     <div className="grid gap-5 sm:grid-cols-2">
                       <div className="space-y-2">
@@ -292,7 +282,6 @@ export function ContatoSection() {
                       )}
                     </Button>
                   </form>
-                )}
               </CardContent>
             </Card>
           </ScrollReveal>

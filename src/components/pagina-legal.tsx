@@ -1,4 +1,5 @@
 import { Header } from "@/components/header";
+import { Trilha } from "@/components/trilha";
 import { Footer } from "@/components/footer";
 import { MANDATO } from "@/lib/conteudo";
 
@@ -29,6 +30,7 @@ export function PaginaLegal({
       <main id="conteudo">
         <article className="pb-16 pt-32 md:pt-40">
           <div className="container-custom max-w-3xl px-4 md:px-8">
+            <Trilha passos={[{ rotulo: titulo }]} />
             <h1 className="font-heading text-3xl font-bold md:text-4xl">{titulo}</h1>
             <p className="mt-2 text-sm text-muted-foreground">Última atualização: {atualizacao}</p>
 
