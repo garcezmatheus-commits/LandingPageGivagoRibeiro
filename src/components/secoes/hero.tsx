@@ -6,7 +6,7 @@ import Link from "next/link";
 import { CheckCircle2, Pause, Play } from "lucide-react";
 import { FotoComParallax } from "@/components/ui/foto-com-parallax";
 import { Button } from "@/components/ui/button";
-import { BlurText } from "@/components/ui/blur-text";
+import { BlurText, precarregarBlurText } from "@/components/ui/blur-text";
 import { Onda } from "@/components/ui/onda";
 import { ENTREGAS_HERO, MANDATO } from "@/lib/conteudo";
 import { cn } from "@/lib/utils";
@@ -68,6 +68,8 @@ export function HeroSection() {
     const aoMudar = () => setReduzir(mq.matches);
     mq.addEventListener("change", aoMudar);
     setPronto(true);
+    // A primeira troca é aos 4s; a animação do título chega antes disso.
+    if (!mq.matches) precarregarBlurText();
     return () => mq.removeEventListener("change", aoMudar);
   }, []);
 

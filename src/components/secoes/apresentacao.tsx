@@ -8,12 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TRAJETORIA } from "@/lib/conteudo";
 
-const NUMEROS = [
-  { valor: "5", rotulo: "Mundiais" },
-  { valor: "Top 10", rotulo: "2009" },
-  { valor: "20+", rotulo: "Países" },
-];
-
 const EXPERIENCIA = [
   { titulo: "Formação Acadêmica", Icone: GraduationCap, itens: TRAJETORIA.formacao, cor: "text-primary", bg: "bg-primary/10", ponto: "bg-primary" },
   { titulo: "Gestão Pública", Icone: Landmark, itens: TRAJETORIA.gestao, cor: "text-secondary", bg: "bg-secondary/10", ponto: "bg-secondary" },
@@ -81,20 +75,11 @@ export function ApresentacaoSection() {
               Competir em mais de 20 países ampliou sua bagagem cultural e seu entendimento de
               políticas bem-sucedidas em educação, esporte, meio ambiente e desenvolvimento urbano.
             </p>
-            <p className="mb-8 leading-relaxed text-muted-foreground">
+            <p className="leading-relaxed text-muted-foreground">
               A passagem do esporte para a gestão foi uma evolução natural: a mesma disciplina, metas
               claras e trabalho em equipe que levaram ao alto rendimento hoje orientam sua forma de
               governar, com planejamento, indicadores e resultados.
             </p>
-
-            <ul className="grid grid-cols-3 gap-4">
-              {NUMEROS.map((n) => (
-                <li key={n.rotulo} className="rounded-xl bg-card p-4 text-center shadow-soft">
-                  <p className="font-heading text-2xl font-bold tabular-nums text-primary">{n.valor}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{n.rotulo}</p>
-                </li>
-              ))}
-            </ul>
           </ScrollReveal>
 
           <ScrollReveal className="lg:order-1">
