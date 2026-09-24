@@ -133,7 +133,7 @@ export function HeroSection() {
       aria-label="Destaques do mandato"
       data-dir={direcao}
       className={cn(
-        "hero-carrossel relative flex min-h-[36rem] items-center overflow-hidden py-32 md:min-h-[42rem] md:py-40",
+        "hero-carrossel relative flex min-h-[36rem] items-center overflow-hidden pb-16 pt-24 sm:py-32 md:min-h-[42rem] md:py-40",
         ciclo > 0 && "hero-trocou"
       )}
       style={{ minHeight: "min(100svh, 52rem)" }}
@@ -239,7 +239,7 @@ export function HeroSection() {
         Os textos de todas as telas ficam empilhados na mesma célula de grid:
         a altura do bloco é a do maior, então os botões não pulam a cada troca.
       */}
-      <div className="container-custom relative z-10 px-4 pb-20 md:px-8 md:pb-28">
+      <div className="container-custom relative z-10 px-4 pb-8 sm:pb-20 md:px-8 md:pb-28">
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
           <div className="grid w-full" aria-live={rodando ? "off" : "polite"}>
             {SLIDES.map((slide, i) => {
@@ -259,9 +259,9 @@ export function HeroSection() {
                   {slide.tipo === "principal" ? (
                     <React.Fragment key={estado === "ativo" ? ciclo : "ocioso"}>
                       <p className="hero-revela mb-5 flex items-center gap-3 text-sm font-medium uppercase tracking-widest text-white">
-                        <span className="h-px w-10 bg-accent" aria-hidden="true" />
+                        <span className="h-px w-6 bg-accent sm:w-10" aria-hidden="true" />
                         {MANDATO.cargo}
-                        <span className="h-px w-10 bg-accent" aria-hidden="true" />
+                        <span className="h-px w-6 bg-accent sm:w-10" aria-hidden="true" />
                       </p>
 
                       <BlurText
@@ -273,7 +273,7 @@ export function HeroSection() {
                       />
 
                       <p
-                        className="hero-revela mt-7 max-w-2xl text-lg leading-relaxed text-white md:text-xl"
+                        className="hero-revela mt-5 max-w-2xl text-base leading-relaxed text-white sm:mt-7 sm:text-lg md:text-xl"
                         style={{ "--atraso": "650ms" } as React.CSSProperties}
                       >
                         Givago é o gestor público que, com a disciplina de atleta e a visão de quem conhece
@@ -294,7 +294,7 @@ export function HeroSection() {
                         className="text-balance font-heading text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-[3.5rem] lg:text-6xl"
                       />
                       <p
-                        className="hero-revela mt-7 max-w-2xl text-lg leading-relaxed text-white md:text-xl"
+                        className="hero-revela mt-5 max-w-2xl text-base leading-relaxed text-white sm:mt-7 sm:text-lg md:text-xl"
                         style={{ "--atraso": "750ms" } as React.CSSProperties}
                       >
                         {slide.texto}
@@ -306,21 +306,21 @@ export function HeroSection() {
             })}
           </div>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" variant="accent">
+          <div className="mt-7 flex flex-wrap justify-center gap-3 sm:mt-9">
+            <Button asChild size="lg" variant="accent" className="px-4 text-sm sm:px-8 sm:text-base">
               <Link href="/#pilares">Conheça os Pilares</Link>
             </Button>
             <Button
               asChild
               size="lg"
-              className="border border-white/20 bg-white/10 text-white hover:bg-white/20"
+              className="border border-white/20 bg-white/10 px-4 text-sm text-white hover:bg-white/20 sm:px-8 sm:text-base"
             >
               <Link href="/#contato">Fale com a gente</Link>
             </Button>
           </div>
 
           {/* Linha de apoio: na tela principal, o compromisso; nas entregas, a fonte. */}
-          <div className="mt-10 grid w-full max-w-xl">
+          <div className="mt-6 grid w-full max-w-xl sm:mt-10">
             {SLIDES.map((slide, i) => {
               const estado = estadoDe(i);
               return (
@@ -348,7 +348,7 @@ export function HeroSection() {
             })}
           </div>
 
-          <div className="mt-8 flex items-center gap-3">
+          <div className="mt-5 flex items-center gap-3 sm:mt-8">
             {autoplay && (
               <button
                 type="button"
@@ -403,9 +403,13 @@ export function HeroSection() {
 
       <Onda className="text-background" />
 
+      {/*
+        Some no celular: lá rolar é gesto óbvio, e o espaço embaixo é o que
+        deixa os controles do carrossel caberem na primeira tela.
+      */}
       <a
         href="#destaques"
-        className="group absolute inset-x-0 bottom-20 z-30 mx-auto flex w-fit flex-col items-center gap-2 md:bottom-28"
+        className="group absolute inset-x-0 bottom-20 z-30 mx-auto hidden w-fit flex-col items-center gap-2 sm:flex md:bottom-28"
       >
         <span className="text-sm text-white/85 transition-colors group-hover:text-white">
           Rolar para baixo
