@@ -162,6 +162,15 @@ export function HeroSection() {
         else voltar();
       }}
     >
+      {/*
+        O h1 fica fora da rotação: dentro de um slide, ele ganhava aria-hidden
+        sempre que outro slide entrava, e a página ficava sem título principal
+        para leitor de tela na maior parte do tempo.
+      */}
+      <h1 className="sr-only">
+        {MANDATO.nome}, {MANDATO.cargo}
+      </h1>
+
       <FotoComParallax>
         {SLIDES.map((slide, i) => (
           <div key={i} className="hero-fundo" data-estado={estadoDe(i)} aria-hidden={i !== ativo}>
@@ -265,7 +274,7 @@ export function HeroSection() {
                       </p>
 
                       <BlurText
-                        as="h1"
+                        as="h2"
                         animar={animar}
                         inicio={0.3}
                         linhas={[{ texto: "Gestão com Raiz," }, { texto: "Disciplina e Resultado" }]}
@@ -319,7 +328,10 @@ export function HeroSection() {
             </Button>
           </div>
 
-          {/* Linha de apoio: na tela principal, o compromisso; nas entregas, a fonte. */}
+          {/*
+            Linha de apoio: nas entregas, a fonte. A tela principal não tem:
+            a frase do compromisso já é a faixa da Frase, mais abaixo.
+          */}
           <div className="mt-6 grid w-full max-w-xl sm:mt-10">
             {SLIDES.map((slide, i) => {
               const estado = estadoDe(i);
@@ -330,11 +342,7 @@ export function HeroSection() {
                   data-estado={estado}
                   className="hero-texto flex items-center justify-center gap-2 text-sm text-white/85 [grid-area:1/1]"
                 >
-                  {slide.tipo === "principal" ? (
-                    <span className="hero-revela" style={{ "--atraso": "850ms" } as React.CSSProperties}>
-                      Mandato comprometido com transparência, participação social e resultados mensuráveis.
-                    </span>
-                  ) : (
+                  {slide.tipo === "principal" ? null : (
                     <span
                       className="hero-revela inline-flex items-center gap-2"
                       style={{ "--atraso": "950ms" } as React.CSSProperties}

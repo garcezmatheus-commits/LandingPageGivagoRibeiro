@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Instagram, Facebook, Youtube, MapPin, Phone, Mail } from "lucide-react";
 import { Newsletter } from "@/components/newsletter";
+import { BotaoPreferenciasCookies } from "@/components/analytics/botao-preferencias";
 import { MANDATO, PILARES } from "@/lib/conteudo";
 
 const REDES = [
@@ -127,7 +128,7 @@ export function Footer() {
           <p className="text-sm text-footer-foreground/70">
             {`© ${new Date().getFullYear()} ${MANDATO.nome}. Todos os direitos reservados. Desenvolvido por Matheus Garcez dos Santos.`}
           </p>
-          <ul className="flex gap-4">
+          <ul className="flex flex-wrap gap-x-4 gap-y-2">
             <li>
               <Link href="/privacidade" className="text-sm text-footer-foreground/70 transition-colors hover:text-footer-foreground">
                 Política de Privacidade
@@ -137,6 +138,9 @@ export function Footer() {
               <Link href="/termos" className="text-sm text-footer-foreground/70 transition-colors hover:text-footer-foreground">
                 Termos de Uso
               </Link>
+            </li>
+            <li>
+              <BotaoPreferenciasCookies className="text-sm text-footer-foreground/70 transition-colors hover:text-footer-foreground" />
             </li>
           </ul>
         </div>

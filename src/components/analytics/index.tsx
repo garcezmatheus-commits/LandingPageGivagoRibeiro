@@ -26,6 +26,20 @@ export function Analytics() {
     setDecisao(lerConsentimento());
   }, []);
 
+  // Quem aceitou e depois recusou: o script já baixado continua na memória da
+  // página, então é preciso mandá-lo parar (bandeira oficial do Google) e
+  // apagar os cookies que ele deixou.
+  const aoDecidir = React.useCallback(
+    (nova: Consentimento) => {
+      if (id) {
+        (window as unknown as Record<string, boolean>)[`ga-disable-${id}`] = nova !== "aceito";
+        if (nova === "recusado") apagarCookiesDoAnalytics();
+      }
+      setDecisao(nova);
+    },
+    [id]
+  );
+
   if (!id) return null;
 
   return (
@@ -50,7 +64,18 @@ export function Analytics() {
         </>
       )}
 
-      <BannerDeConsentimento aoDecidir={setDecisao} />
+      <BannerDeConsentimento aoDecidir={aoDecidir} />
     </>
   );
+}
+
+function apagarCookiesDoAnalytics() {
+  const dominio = location.hostname.replace(/^www\./, "");
+  for (const par of document.cookie.split(";")) {
+    const nome = par.split("=")[0].trim();
+    if (!nome.startsWith("_ga")) continue;
+    for (const escopo of ["", `; domain=${dominio}`, `; domain=.${dominio}`]) {
+      document.cookie = `${nome}=; Max-Age=0; path=/${escopo}`;
+    }
+  }
 }

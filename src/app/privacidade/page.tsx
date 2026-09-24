@@ -3,6 +3,7 @@ import { PaginaLegal, type SecaoLegal } from "@/components/pagina-legal";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
+  alternates: { canonical: "/privacidade" },
   description:
     "Como o Gabinete do Vereador Givago Ribeiro coleta, usa e protege os dados pessoais dos cidadãos.",
 };
@@ -45,6 +46,7 @@ const SECOES: SecaoLegal[] = [
     paragrafos: [
       "Usamos o Google Analytics para entender como as pessoas navegam pelo site — quais páginas são mais procuradas e por quais caminhos os visitantes chegam. Isso orienta o que o mandato publica.",
       "A medição só começa depois que você aceita, no aviso exibido na primeira visita. Se recusar, nenhum cookie de análise é instalado e nada é enviado. O site funciona igual nos dois casos.",
+      "Para mudar de ideia depois, use \"Preferências de cookies\", no rodapé de qualquer página. Se retirar o consentimento, a medição para e os cookies do Google Analytics são apagados do seu navegador.",
       "O endereço de IP é anonimizado antes do envio, e os dados são tratados de forma agregada: não identificamos visitantes individualmente.",
     ],
   },

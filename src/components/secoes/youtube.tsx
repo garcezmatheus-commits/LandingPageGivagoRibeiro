@@ -24,7 +24,8 @@ export async function YoutubeSection() {
             Assista aos vídeos do mandato, acompanhe as ações em Santa Maria e fique por dentro de
             tudo que estamos fazendo pela cidade.
           </p>
-          <Button asChild className="mt-5 bg-[#ff0000] text-white hover:bg-[#cc0000]">
+          {/* #cc0000: o vermelho puro do YouTube dá 4:1 com texto branco, abaixo do mínimo. */}
+          <Button asChild className="mt-5 bg-[#cc0000] text-white hover:bg-[#a30000]">
             <a href={CANAL_URL} target="_blank" rel="noopener noreferrer">
               <Youtube className="h-4 w-4" aria-hidden="true" />
               Inscreva-se no Canal

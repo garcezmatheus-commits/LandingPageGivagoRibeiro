@@ -27,7 +27,11 @@ export async function generateMetadata({
 
   if (!pilar) return {};
 
-  return { title: pilar.titulo, description: pilar.descricao };
+  return {
+    title: pilar.titulo,
+    description: pilar.descricao,
+    alternates: { canonical: `/pilares/${slug}` },
+  };
 }
 
 export default async function PaginaDePilar({ params }: { params: Promise<{ slug: string }> }) {

@@ -11,6 +11,7 @@ import { buscarNoticias, type Noticia } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   title: "Notícias",
+  alternates: { canonical: "/noticias" },
   description: "Acompanhe ações, projetos e resultados do mandato.",
 };
 

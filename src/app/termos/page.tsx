@@ -3,6 +3,7 @@ import { PaginaLegal, type SecaoLegal } from "@/components/pagina-legal";
 
 export const metadata: Metadata = {
   title: "Termos de Uso",
+  alternates: { canonical: "/termos" },
   description: "Condições de uso do site do mandato do Vereador Givago Ribeiro.",
 };
 

@@ -33,6 +33,8 @@ export function ContatoSection() {
   const [dados, setDados] = React.useState(VAZIO);
   const [estado, setEstado] = React.useState<Estado>("parado");
   const [erro, setErro] = React.useState("");
+  const [faltaLgpd, setFaltaLgpd] = React.useState(false);
+  const lgpdRef = React.useRef<HTMLInputElement>(null);
 
   function alterar<C extends keyof typeof VAZIO>(campo: C, valor: (typeof VAZIO)[C]) {
     setDados((atual) => ({ ...atual, [campo]: valor }));
@@ -40,6 +42,14 @@ export function ContatoSection() {
 
   async function enviar(evento: React.FormEvent) {
     evento.preventDefault();
+
+    // O botão fica sempre ativo: desabilitado, ninguém sabia por que não enviava.
+    if (!dados.lgpd) {
+      setFaltaLgpd(true);
+      lgpdRef.current?.focus();
+      return;
+    }
+
     setEstado("enviando");
     setErro("");
 
@@ -192,21 +202,35 @@ export function ContatoSection() {
                       </p>
                     </div>
 
-                    <div className="flex items-start gap-2">
-                      <Checkbox
-                        id="lgpd"
-                        name="lgpd"
-                        className="mt-1"
-                        checked={dados.lgpd}
-                        onChange={(e) => alterar("lgpd", e.target.checked)}
-                      />
-                      <Label htmlFor="lgpd" className="text-sm font-normal leading-relaxed">
-                        Autorizo o tratamento dos meus dados para retorno deste contato, conforme a{" "}
-                        <Link href="/privacidade" className="text-primary underline-offset-4 hover:underline">
-                          Política de Privacidade
-                        </Link>
-                        .
-                      </Label>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <Checkbox
+                          ref={lgpdRef}
+                          id="lgpd"
+                          name="lgpd"
+                          className="mt-1"
+                          checked={dados.lgpd}
+                          aria-invalid={faltaLgpd || undefined}
+                          aria-describedby={faltaLgpd ? "lgpd-erro" : undefined}
+                          onChange={(e) => {
+                            alterar("lgpd", e.target.checked);
+                            if (e.target.checked) setFaltaLgpd(false);
+                          }}
+                        />
+                        <Label htmlFor="lgpd" className="text-sm font-normal leading-relaxed">
+                          Autorizo o tratamento dos meus dados para retorno deste contato, conforme a{" "}
+                          <Link href="/privacidade" className="text-primary underline-offset-4 hover:underline">
+                            Política de Privacidade
+                          </Link>
+                          .
+                        </Label>
+                      </div>
+                      {faltaLgpd && (
+                        <p id="lgpd-erro" role="alert" className="flex items-center gap-2 text-sm text-destructive">
+                          <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                          Marque a autorização acima para podermos enviar sua mensagem.
+                        </p>
+                      )}
                     </div>
 
                     {erro && (
@@ -216,7 +240,7 @@ export function ContatoSection() {
                       </p>
                     )}
 
-                    <Button type="submit" size="lg" className="w-full" disabled={estado === "enviando" || !dados.lgpd}>
+                    <Button type="submit" size="lg" className="w-full" disabled={estado === "enviando"}>
                       {estado === "enviando" ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />

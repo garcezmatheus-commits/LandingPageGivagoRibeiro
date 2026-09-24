@@ -443,7 +443,7 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     fonte: "Obra da Prefeitura de Santa Maria",
     imagem: "/images/entregas/rua-garibaldi.webp",
     alt: "Givago na Rua Garibaldi Luiz Schimitz recém pavimentada",
-    foto: "object-cover object-[40%_62%]",
+    foto: "object-cover object-[40%_28%]",
   },
   {
     id: "ubs-campestre",

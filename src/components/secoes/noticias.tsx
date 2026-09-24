@@ -44,7 +44,7 @@ export async function NoticiasSection() {
                         src={noticia.imagem}
                         alt={noticia.imagemAlt}
                         fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        sizes="(max-width: 767px) 100vw, (max-width: 1280px) 33vw, 420px"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>

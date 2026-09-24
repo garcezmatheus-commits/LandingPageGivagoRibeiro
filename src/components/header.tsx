@@ -102,7 +102,8 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <TamanhoDeTexto
-              className={cn("hidden md:flex", rolou || aberto ? "" : "text-white/80")}
+              className="hidden md:flex"
+              claro={!(rolou || aberto)}
             />
 
             <Button asChild className="hidden sm:inline-flex">

@@ -22,7 +22,14 @@ const ESCALAS = [
 
 const CHAVE = "givago:tamanho-texto";
 
-export function TamanhoDeTexto({ className }: { className?: string }) {
+export function TamanhoDeTexto({
+  className,
+  claro = false,
+}: {
+  className?: string;
+  /** Sobre a foto do hero (cabeçalho transparente no topo da página). */
+  claro?: boolean;
+}) {
   const [escala, setEscala] = React.useState(100);
 
   React.useEffect(() => {
@@ -62,8 +69,12 @@ export function TamanhoDeTexto({ className }: { className?: string }) {
             i === 1 && "text-sm",
             i === 2 && "text-base",
             escala === opcao.valor
-              ? "bg-primary text-primary-foreground"
-              : "text-muted-foreground hover:bg-muted"
+              ? claro
+                ? "bg-white text-primary"
+                : "bg-primary text-primary-foreground"
+              : claro
+                ? "text-white/90 hover:bg-white/15"
+                : "text-muted-foreground hover:bg-muted"
           )}
         >
           {opcao.rotulo}
