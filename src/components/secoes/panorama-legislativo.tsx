@@ -8,6 +8,7 @@ import {
   PROJETOS_EM_TRAMITE,
   PROJETOS_NAO_AVANCARAM,
   PERFIL_CITTA,
+  PRODUCAO_LEGISLATIVA,
   type ProjetoDeLei,
 } from "@/lib/conteudo";
 import { Button } from "@/components/ui/button";
@@ -84,8 +85,6 @@ function NaoAvancou({ projeto }: { projeto: ProjetoDeLei }) {
 }
 
 export function PanoramaLegislativoSection() {
-  const total = PROJETOS_CONCLUIDOS.length + PROJETOS_EM_TRAMITE.length;
-
   return (
     <section className="py-16 md:py-24" aria-labelledby="panorama-titulo">
       <div className="container-custom px-4 md:px-8">
@@ -98,8 +97,9 @@ export function PanoramaLegislativoSection() {
             Promessa não basta: acompanhe cada lei do mandato
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-muted-foreground">
-            {total} iniciativas apresentadas: {PROJETOS_CONCLUIDOS.length} já concluídas e{" "}
-            {PROJETOS_EM_TRAMITE.length} em tramitação na Câmara.
+            Desde {PRODUCAO_LEGISLATIVA.desde}, {PRODUCAO_LEGISLATIVA.leis} projetos do Givago viraram
+            lei e outros {PRODUCAO_LEGISLATIVA.emTramitacao} estão em tramitação na Câmara. Abaixo, os
+            destaques.
           </p>
 
           <Button asChild variant="outline" size="lg" className="mt-6">

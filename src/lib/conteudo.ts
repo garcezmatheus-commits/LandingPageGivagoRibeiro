@@ -293,6 +293,20 @@ export interface ProjetoDeLei {
   motivo?: string;
 }
 
+/**
+ * Números reais da produção do Givago na Câmara, de 2021 até hoje. As listas
+ * abaixo são só os destaques, por isso a contagem não sai delas.
+ *
+ * Conferido projeto a projeto no portal da Câmara em 2026-09-13. Fica fora o
+ * PLC 10/2025 (em tramitação, mas o processo registra a autoria como
+ * Secretaria Legislativa). Ao mudar status de projeto, atualizar aqui.
+ */
+export const PRODUCAO_LEGISLATIVA = {
+  desde: 2021,
+  leis: 13,
+  emTramitacao: 7,
+} as const;
+
 export const PROJETOS_CONCLUIDOS: ProjetoDeLei[] = [
   {
     titulo: "Mapa de Risco Ambiental",
