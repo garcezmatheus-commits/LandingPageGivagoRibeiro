@@ -29,24 +29,64 @@ const VAZIO = {
   lgpd: false,
 };
 
+type Campo = "nome" | "email" | "assunto" | "mensagem" | "lgpd";
+type Erros = Partial<Record<Campo, string>>;
+
+// Ordem visual do formulário: o foco vai para o primeiro campo com problema.
+const ORDEM: Campo[] = ["nome", "email", "assunto", "mensagem", "lgpd"];
+
+function validar(d: typeof VAZIO): Erros {
+  const e: Erros = {};
+  if (!d.nome.trim()) e.nome = "Informe seu nome.";
+  if (!d.email.trim()) e.email = "Informe seu e-mail para podermos responder.";
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim()))
+    e.email = "Confira o e-mail: parece faltar algo (ex.: nome@gmail.com).";
+  if (!d.assunto) e.assunto = "Escolha o assunto da mensagem.";
+  if (!d.mensagem.trim()) e.mensagem = "Escreva sua mensagem.";
+  if (!d.lgpd) e.lgpd = "Marque a autorização acima para podermos enviar sua mensagem.";
+  return e;
+}
+
+function ErroCampo({ campo, erros }: { campo: Campo; erros: Erros }) {
+  if (!erros[campo]) return null;
+  return (
+    <p id={`${campo}-erro`} className="flex items-center gap-2 text-sm text-destructive">
+      <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+      {erros[campo]}
+    </p>
+  );
+}
+
+/** Atributos de acessibilidade de um campo com erro. */
+function invalido(campo: Campo, erros: Erros) {
+  return erros[campo]
+    ? { "aria-invalid": true as const, "aria-describedby": `${campo}-erro` }
+    : {};
+}
+
 export function ContatoSection() {
   const [dados, setDados] = React.useState(VAZIO);
   const [estado, setEstado] = React.useState<Estado>("parado");
   const [erro, setErro] = React.useState("");
-  const [faltaLgpd, setFaltaLgpd] = React.useState(false);
-  const lgpdRef = React.useRef<HTMLInputElement>(null);
+  const [erros, setErros] = React.useState<Erros>({});
 
   function alterar<C extends keyof typeof VAZIO>(campo: C, valor: (typeof VAZIO)[C]) {
-    setDados((atual) => ({ ...atual, [campo]: valor }));
+    const novos = { ...dados, [campo]: valor };
+    setDados(novos);
+    // Só revalida o campo que já estava com erro: não acusa enquanto a pessoa digita.
+    const c = campo as Campo;
+    if (erros[c]) setErros((atual) => ({ ...atual, [c]: validar(novos)[c] }));
   }
 
   async function enviar(evento: React.FormEvent) {
     evento.preventDefault();
 
-    // O botão fica sempre ativo: desabilitado, ninguém sabia por que não enviava.
-    if (!dados.lgpd) {
-      setFaltaLgpd(true);
-      lgpdRef.current?.focus();
+    // O botão fica sempre ativo; o que falta aparece embaixo de cada campo.
+    const encontrados = validar(dados);
+    setErros(encontrados);
+    const primeiro = ORDEM.find((campo) => encontrados[campo]);
+    if (primeiro) {
+      document.getElementById(primeiro)?.focus();
       return;
     }
 
@@ -111,7 +151,9 @@ export function ContatoSection() {
                           autoComplete="name"
                           value={dados.nome}
                           onChange={(e) => alterar("nome", e.target.value)}
+                          {...invalido("nome", erros)}
                         />
+                        <ErroCampo campo="nome" erros={erros} />
                       </div>
 
                       <div className="space-y-2">
@@ -129,7 +171,9 @@ export function ContatoSection() {
                           placeholder="seu@email.com"
                           value={dados.email}
                           onChange={(e) => alterar("email", e.target.value)}
+                          {...invalido("email", erros)}
                         />
+                        <ErroCampo campo="email" erros={erros} />
                       </div>
 
                       <div className="space-y-2">
@@ -174,6 +218,7 @@ export function ContatoSection() {
                         required
                         value={dados.assunto}
                         onChange={(e) => alterar("assunto", e.target.value)}
+                        {...invalido("assunto", erros)}
                       >
                         <option value="">Selecione o assunto</option>
                         {ASSUNTOS.map((a) => (
@@ -182,6 +227,7 @@ export function ContatoSection() {
                           </option>
                         ))}
                       </Select>
+                      <ErroCampo campo="assunto" erros={erros} />
                     </div>
 
                     <div className="space-y-2">
@@ -196,7 +242,9 @@ export function ContatoSection() {
                         placeholder="Descreva sua sugestão, demanda ou convite…"
                         value={dados.mensagem}
                         onChange={(e) => alterar("mensagem", e.target.value)}
+                        {...invalido("mensagem", erros)}
                       />
+                      <ErroCampo campo="mensagem" erros={erros} />
                       <p className="text-xs text-muted-foreground">
                         Evite incluir dados de saúde ou outras informações pessoais sensíveis.
                       </p>
@@ -205,17 +253,12 @@ export function ContatoSection() {
                     <div className="space-y-2">
                       <div className="flex items-start gap-2">
                         <Checkbox
-                          ref={lgpdRef}
                           id="lgpd"
                           name="lgpd"
                           className="mt-1"
                           checked={dados.lgpd}
-                          aria-invalid={faltaLgpd || undefined}
-                          aria-describedby={faltaLgpd ? "lgpd-erro" : undefined}
-                          onChange={(e) => {
-                            alterar("lgpd", e.target.checked);
-                            if (e.target.checked) setFaltaLgpd(false);
-                          }}
+                          onChange={(e) => alterar("lgpd", e.target.checked)}
+                          {...invalido("lgpd", erros)}
                         />
                         <Label htmlFor="lgpd" className="text-sm font-normal leading-relaxed">
                           Autorizo o tratamento dos meus dados para retorno deste contato, conforme a{" "}
@@ -225,12 +268,7 @@ export function ContatoSection() {
                           .
                         </Label>
                       </div>
-                      {faltaLgpd && (
-                        <p id="lgpd-erro" role="alert" className="flex items-center gap-2 text-sm text-destructive">
-                          <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                          Marque a autorização acima para podermos enviar sua mensagem.
-                        </p>
-                      )}
+                      <ErroCampo campo="lgpd" erros={erros} />
                     </div>
 
                     {erro && (
