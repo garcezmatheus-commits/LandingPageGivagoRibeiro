@@ -297,22 +297,15 @@ export const PROJETOS_CONCLUIDOS: ProjetoDeLei[] = [
   {
     titulo: "Mapa de Risco Ambiental",
     chamada: "Para prevenir alagamentos na cidade: criamos o Mapa de Risco Ambiental",
-    numero: "PL 10217",
-    situacao:
-      "Projeto concluído que estabelece diretrizes para o mapeamento de áreas de risco no município.",
+    numero: "PL nº 10217/2026 → Lei nº 7171/2026",
+    situacao: "Institui o Mapa Municipal de Risco Ambiental Urbano, sancionado em 2026.",
   },
   {
     titulo: "Reconhecimento do Jogo do Câmbio",
     chamada: "Mais saúde e convivência para a terceira idade: reconhecemos o Jogo do Câmbio",
-    numero: "PL 10160",
+    numero: "PL nº 10160/2026 → Lei nº 7130/2026",
     situacao:
-      "Oficialização desta prática esportiva e cultural, valorizando o bem-estar da terceira idade.",
-  },
-  {
-    titulo: "Legisla MI de Economia",
-    chamada: "Menos burocracia para quem quer empreender: criamos o Legisla MI",
-    numero: "PL 10190",
-    situacao: "Projeto finalizado focado em desburocratização e fomento econômico local.",
+      "Reconhece o Jogo do Câmbio como esporte de valor social para a pessoa idosa e institui 1º de outubro como o seu dia municipal.",
   },
   {
     titulo: "Distrito Verde",
@@ -331,17 +324,8 @@ export const PROJETOS_EM_TRAMITE: ProjetoDeLei[] = [
     situacao: "Aguardando em Comunicação Interna para avançar nas comissões.",
   },
   {
-    titulo: "Programa Municipal Delas",
-    numero: "PL 10194",
-    situacao: "Atualmente em fase de 2ª Discussão e Votação na Secretaria Legislativa.",
-  },
-  {
-    titulo: "Ajustes na Lei Municipal 6.778/2023",
-    numero: "PL 10163/2026",
-    situacao: "Aguardando movimentação em comunicação interna; visa atualizar a legislação vigente.",
-  },
-  {
     titulo: "Código de Posturas",
+    chamada: "Lixo jogado em terreno baldio: propomos a fiscalização feita junto com a comunidade",
     numero: "PLC nº 5/2026",
     situacao:
       "Em fase de elaboração de Relatório Final pela Comissão Especial (atualmente sob relatoria do Ver. Guilherme Badke).",
