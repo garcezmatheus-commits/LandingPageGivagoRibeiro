@@ -464,7 +464,10 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     solucao: "contêineres no Campestre",
     texto:
       "Contêineres de resíduos instalados no bairro garantem a destinação correta do lixo e ruas mais limpas no dia a dia.",
-    fonte: "Emenda do mandato",
+    // "Iniciativa", não "emenda": o Relatório de Mandato registra a instalação
+    // como iniciativa do mandato, mas nenhuma emenda na Câmara cita contêineres
+    // (conferido no portal em 2026-09-24). Trocar só com o documento da emenda.
+    fonte: "Iniciativa do mandato",
     imagem: "/images/entregas/conteineres.webp",
     alt: "Givago ao lado de um contêiner de resíduos da Prefeitura de Santa Maria",
     foto: "object-cover object-[70%_40%]",
