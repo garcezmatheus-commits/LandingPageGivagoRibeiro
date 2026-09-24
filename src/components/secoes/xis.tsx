@@ -23,7 +23,7 @@ export function XisSection() {
               id="xis-titulo"
               className="text-balance font-heading text-4xl font-bold tracking-tight md:text-5xl"
             >
-              A lei que fez de Santa Maria a Cidade do Xis
+              A lei que movimenta a economia de Santa Maria
             </h2>
             <p className="mt-5 leading-relaxed text-muted-foreground">
               Em 2023, Givago apresentou o Projeto de Lei nº 9.715/2023, que denomina

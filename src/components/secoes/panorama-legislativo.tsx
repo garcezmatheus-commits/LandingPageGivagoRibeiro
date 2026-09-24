@@ -28,7 +28,9 @@ function Concluido({ projeto }: { projeto: ProjetoDeLei }) {
         </span>
         <span className="min-w-0">
           <span className="mb-1 flex flex-wrap items-center gap-2">
-            <strong className="font-heading text-lg leading-snug">{projeto.titulo}</strong>
+            <strong className="font-heading text-lg leading-snug">
+              {projeto.chamada ?? projeto.titulo}
+            </strong>
             <Badge className="shrink-0 bg-primary/10 text-primary">{projeto.numero}</Badge>
           </span>
           <span className="block text-sm leading-relaxed text-muted-foreground">
@@ -46,7 +48,7 @@ function EmTramite({ projeto }: { projeto: ProjetoDeLei }) {
       <Clock className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-medium leading-snug">{projeto.titulo}</span>
+          <span className="font-medium leading-snug">{projeto.chamada ?? projeto.titulo}</span>
           <span className="shrink-0 text-xs text-muted-foreground">{projeto.numero}</span>
         </div>
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{projeto.situacao}</p>
@@ -63,7 +65,7 @@ function NaoAvancou({ projeto }: { projeto: ProjetoDeLei }) {
       <CircleSlash className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-medium leading-snug">{projeto.titulo}</span>
+          <span className="font-medium leading-snug">{projeto.chamada ?? projeto.titulo}</span>
           <span className="shrink-0 text-xs text-muted-foreground">{projeto.numero}</span>
         </div>
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{projeto.situacao}</p>

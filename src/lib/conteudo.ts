@@ -270,7 +270,13 @@ export const PILARES: Pilar[] = [
 export type StatusProjeto = "concluido" | "tramitando" | "parado" | "rejeitado";
 
 export interface ProjetoDeLei {
+  /** Nome técnico do projeto. Também vai no e-mail de "acompanhar projeto". */
   titulo: string;
+  /**
+   * Título exibido no card: a dor das pessoas ligada à solução, a pedido do
+   * Givago. Sem chamada, o card mostra o nome técnico.
+   */
+  chamada?: string;
   numero: string;
   situacao: string;
   /** Por que não avançou. Só faz sentido em "parado" e "rejeitado". */
@@ -280,23 +286,27 @@ export interface ProjetoDeLei {
 export const PROJETOS_CONCLUIDOS: ProjetoDeLei[] = [
   {
     titulo: "Mapa de Risco Ambiental",
+    chamada: "Para prevenir alagamentos na cidade: criamos o Mapa de Risco Ambiental",
     numero: "PL 10217",
     situacao:
       "Projeto concluído que estabelece diretrizes para o mapeamento de áreas de risco no município.",
   },
   {
     titulo: "Reconhecimento do Jogo do Câmbio",
+    chamada: "Mais saúde e convivência para a terceira idade: reconhecemos o Jogo do Câmbio",
     numero: "PL 10160",
     situacao:
       "Oficialização desta prática esportiva e cultural, valorizando o bem-estar da terceira idade.",
   },
   {
     titulo: "Legisla MI de Economia",
+    chamada: "Menos burocracia para quem quer empreender: criamos o Legisla MI",
     numero: "PL 10190",
     situacao: "Projeto finalizado focado em desburocratização e fomento econômico local.",
   },
   {
     titulo: "Distrito Verde",
+    chamada: "Crescer sem destruir: criamos o Distrito Verde",
     numero: "PL nº 10216/2026 → Lei nº 7141/2026",
     situacao:
       "Institui o Polo de Preservação Ambiental e Desenvolvimento Sustentável, sancionado em 2026.",
@@ -306,6 +316,7 @@ export const PROJETOS_CONCLUIDOS: ProjetoDeLei[] = [
 export const PROJETOS_EM_TRAMITE: ProjetoDeLei[] = [
   {
     titulo: "Zeladoria Comunitária",
+    chamada: "Bairro cuidado por quem vive nele: propomos a Zeladoria Comunitária",
     numero: "PL 10290",
     situacao: "Aguardando em Comunicação Interna para avançar nas comissões.",
   },
