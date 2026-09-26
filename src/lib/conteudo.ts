@@ -509,4 +509,19 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     alt: "Dois atletas da ASENA comemorando dentro do caiaque",
     foto: "object-cover object-[40%_50%] scale-[1.3] origin-[35%_100%] lg:object-[50%_50%] lg:scale-125 lg:origin-[50%_100%]",
   },
+  {
+    id: "futebol-americano",
+    rotulo: "Futebol americano",
+    dor: "Mais apoio a quem joga:",
+    solucao: "o esporte de Santa Maria com voz na Câmara",
+    // Único fato conferido que liga o mandato ao esporte de clube: a
+    // presidência da Frente Parlamentar do Esporte (portal da Câmara,
+    // desde 11/06/2026). Nada de lei ou verba para o time sem documento.
+    texto:
+      "Presidente da Frente Parlamentar do Esporte, Givago entra em campo com o Santa Maria Soldiers, time de futebol americano da cidade.",
+    fonte: "Frente Parlamentar do Esporte da Câmara",
+    imagem: "/images/entregas/futebol-americano.webp",
+    alt: "Givago entrando em campo com a bandeira do Santa Maria Soldiers à frente dos jogadores",
+    foto: "object-cover object-[55%_100%] scale-[1.8] origin-[55%_100%]",
+  },
 ];
