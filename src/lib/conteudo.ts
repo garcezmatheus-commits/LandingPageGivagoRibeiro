@@ -524,4 +524,21 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     alt: "Givago entrando em campo com a bandeira do Santa Maria Soldiers à frente dos jogadores",
     foto: "object-cover object-[55%_100%] scale-[1.8] origin-[55%_100%]",
   },
+  {
+    id: "maratona",
+    rotulo: "Maratona",
+    dor: "Um dia histórico para Santa Maria:",
+    solucao: "mais de 4.500 corredores na 4ª Maratona",
+    // A prova não é do mandato: o PL 9682/2023, que instituía a Maratona,
+    // foi arquivado sem virar lei. Por isso o texto fala só do evento e a
+    // fonte é a organização, nunca "iniciativa" ou "lei" do Givago.
+    texto:
+      "A 4ª edição da prova toma as ruas da cidade, um marco para o esporte de Santa Maria.",
+    fonte: "Organização da Maratona de Santa Maria",
+    imagem: "/images/entregas/maratona.webp",
+    alt: "Pelotão de corredores da Maratona de Santa Maria numa avenida da cidade",
+    // A partir de ~1650px a foto já preenche pela largura e cresce sozinha;
+    // com 1.4 o pelotão nítido saía de cena e sobrava o primeiro plano desfocado.
+    foto: "object-cover object-[60%_100%] scale-[1.4] origin-[60%_100%] min-[1650px]:scale-110",
+  },
 ];
