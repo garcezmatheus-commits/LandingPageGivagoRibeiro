@@ -419,6 +419,19 @@ export const TRAJETORIA = {
  *
  * `foto` usa classes literais de object-position porque o Tailwind só gera
  * classe que encontra escrita no código.
+ *
+ * Enquadramento: rosto no terço de cima, acima do título. No celular a foto
+ * preenche pela altura e não sobra nada para subir, então usa-se scale com
+ * origem na base (a foto cresce para cima, sem abrir vão). No desktop, onde
+ * sobra altura, basta object-position.
+ *
+ * Fotos em pé (Rua Garibaldi, JESMA) usam posição em calc no desktop: a sobra
+ * vertical muda com a proporção da tela, e um Y em % que acerta em 1440px
+ * joga o rosto para o meio em 1024px ou para trás do menu em 1728px. Como a
+ * foto preenche pela largura, a altura dela é proporcional a vw; "Xvh - Yvw"
+ * crava o rosto a X% da altura da tela em qualquer largura. Y = posição do
+ * rosto na foto × proporção (Rua: 45% × 4/3 = 60vw).
+ * Testado em 375, 1024, 1440 e 1728px (2026-09-25).
  */
 export interface EntregaHero {
   id: string;
@@ -443,7 +456,7 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     fonte: "Obra da Prefeitura de Santa Maria",
     imagem: "/images/entregas/rua-garibaldi.webp",
     alt: "Givago na Rua Garibaldi Luiz Schimitz recém pavimentada",
-    foto: "object-cover object-[40%_28%]",
+    foto: "object-cover object-[12%_50%] scale-150 origin-[50%_100%] lg:scale-100 lg:object-[40%_calc(20vh_-_60vw)]",
   },
   {
     id: "ubs-campestre",
@@ -470,7 +483,7 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     fonte: "Iniciativa do mandato",
     imagem: "/images/entregas/conteineres.webp",
     alt: "Givago ao lado de um contêiner de resíduos da Prefeitura de Santa Maria",
-    foto: "object-cover object-[70%_40%]",
+    foto: "object-cover object-[96%_40%] lg:object-[70%_40%]",
   },
   {
     id: "jesma",
@@ -482,7 +495,7 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     fonte: "Lei Municipal nº 6.643/2022",
     imagem: "/images/entregas/jesma.webp",
     alt: "Estudantes correndo na pista de atletismo durante os jogos escolares",
-    foto: "object-cover object-[50%_70%]",
+    foto: "object-cover object-[50%_50%] scale-[1.35] origin-[55%_100%] lg:scale-100 lg:object-[50%_calc(25vh_-_52vw)]",
   },
   {
     id: "canoagem",
@@ -494,6 +507,6 @@ export const ENTREGAS_HERO: EntregaHero[] = [
     fonte: "Projeto ASENA no Distrito Verde",
     imagem: "/images/entregas/canoagem.webp",
     alt: "Dois atletas da ASENA comemorando dentro do caiaque",
-    foto: "object-cover object-[50%_45%]",
+    foto: "object-cover object-[40%_50%] scale-[1.3] origin-[35%_100%] lg:object-[50%_50%] lg:scale-125 lg:origin-[50%_100%]",
   },
 ];

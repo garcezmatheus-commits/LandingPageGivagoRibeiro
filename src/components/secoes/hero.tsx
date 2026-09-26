@@ -180,14 +180,16 @@ export function HeroSection() {
                   /*
                     Tela principal: enquadramento do rosto do Givago.
 
-                    object-position 18% 38%: o rosto fica na borda esquerda da
-                    foto original. O eixo X é o que importa no celular, onde
-                    está a maioria das visitas.
+                    Na foto original o rosto fica baixo, e com object-cover não
+                    há sobra vertical para subir sem dar zoom. Então a foto
+                    sobe deixando um vão embaixo, que o fade do .hero-fundo
+                    (globals.css) funde no fundo escuro, atrás do véu.
 
-                    A partir de lg, object-position não tem sobra para mover
-                    (a seção trava em 52rem), então força-se sobra com scale +
-                    translate: sobe o rosto em qualquer largura de desktop.
-                    Testado em 1024, 1440, 1600 e 2200px (2026-09-11).
+                    Celular: foto com 70% da altura. Afasta o rosto (em tela
+                    cheia ele ficava enorme) e o põe mais alto.
+                    Desktop: .hero-foto-principal (globals.css) encolhe a foto
+                    para a esquerda, senão em tela larga o rosto fica enorme.
+                    Testado em 375, 1024, 1440 e 1856px (2026-09-26).
 
                     Qualidade 45 em todas as fotos do hero: vivem sob um véu de
                     ~80%, acima disso são bytes que ninguém enxerga.
@@ -199,7 +201,7 @@ export function HeroSection() {
                     priority
                     quality={45}
                     sizes="100vw"
-                    className="object-cover object-[18%_38%] lg:scale-125 lg:-translate-y-[10%]"
+                    className="hero-foto-principal object-cover object-[10%_50%] max-lg:h-[70%]!"
                   />
                 ) : (
                   <Image

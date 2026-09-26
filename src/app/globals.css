@@ -269,10 +269,37 @@
 }
 .hero-carrossel[data-dir="-1"] { --dir: -1; }
 
+/*
+  Fotos que sobem para tirar o rosto de trás do título deixam vão embaixo.
+  O fade leva a base de toda foto para este fundo escuro, e o véu por cima
+  (mais firme justamente embaixo) esconde a emenda.
+*/
 .hero-fundo {
   position: absolute;
   inset: 0;
   visibility: hidden;
+  background: #0c2f3d;
+}
+.hero-fundo img {
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 92%);
+}
+
+/*
+  Foto da tela principal no desktop. Em tela larga, preenchendo a largura
+  toda, o rosto passava de 400px ("extremamente grande", Matheus 2026-09-26).
+  A foto ocupa só a esquerda, mais baixa, e se apaga para a direita e para
+  baixo no fundo escuro. !important vence o style inline do next/image fill.
+*/
+@media (min-width: 64rem) {
+  .hero-fundo .hero-foto-principal {
+    width: 68% !important;
+    height: 78% !important;
+    translate: 0 -15%;
+    mask-image:
+      linear-gradient(to right, #000 65%, transparent),
+      linear-gradient(to bottom, #000 72%, transparent 95%);
+    mask-composite: intersect;
+  }
 }
 .hero-fundo[data-estado="ativo"] { visibility: visible; z-index: 2; }
 .hero-fundo[data-estado="saindo"] { visibility: visible; z-index: 1; }
