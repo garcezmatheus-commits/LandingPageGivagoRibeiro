@@ -4,19 +4,17 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { NumeroAnimado } from "@/components/ui/numero-animado";
 import { DivisorRemada } from "@/components/ui/divisor-remada";
 import { Button } from "@/components/ui/button";
-import { PROJETOS_CONCLUIDOS, PROJETOS_EM_TRAMITE } from "@/lib/conteudo";
+import { PRODUCAO_LEGISLATIVA } from "@/lib/conteudo";
 
 /**
  * Substitui os antigos "Destaques do Mandato", que repetiam os Pilares com
  * outras palavras.
  *
  * Aqui ficam as duas coisas que só o Givago tem: a carreira de atleta de alto
- * rendimento e o que o mandato já entregou. Os números do legislativo são
- * calculados a partir das listas de projetos, então não têm como divergir do
- * que a página mostra logo abaixo.
+ * rendimento e o que o mandato já entregou. Os números do legislativo vêm de
+ * PRODUCAO_LEGISLATIVA, a mesma fonte do Panorama. Não contar as listas de
+ * projetos: são só os destaques, e a conta sairia menor que o real.
  */
-
-const TOTAL_PROJETOS = PROJETOS_CONCLUIDOS.length + PROJETOS_EM_TRAMITE.length;
 
 const ATLETA = [
   { icone: Trophy, valor: "5", rotulo: "Campeonatos mundiais", detalhe: "representando o Brasil" },
@@ -25,8 +23,18 @@ const ATLETA = [
 ];
 
 const MANDATO_NUMEROS = [
-  { icone: FileCheck2, valor: String(TOTAL_PROJETOS), rotulo: "Projetos de lei", detalhe: "apresentados" },
-  { icone: CheckCircle2, valor: String(PROJETOS_CONCLUIDOS.length), rotulo: "Já concluídos", detalhe: "aprovados e implementados" },
+  {
+    icone: CheckCircle2,
+    valor: String(PRODUCAO_LEGISLATIVA.leis),
+    rotulo: "Viraram lei",
+    detalhe: `projetos do Givago desde ${PRODUCAO_LEGISLATIVA.desde}`,
+  },
+  {
+    icone: FileCheck2,
+    valor: String(PRODUCAO_LEGISLATIVA.emTramitacao),
+    rotulo: "Em tramitação",
+    detalhe: "projetos em análise na Câmara",
+  },
   { icone: Landmark, valor: "2023", rotulo: "Presidente da Câmara", detalhe: "líder do governo em 2024 e 2025" },
 ];
 

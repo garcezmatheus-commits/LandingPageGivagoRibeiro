@@ -297,13 +297,15 @@ export interface ProjetoDeLei {
  * Números reais da produção do Givago na Câmara, de 2021 até hoje. As listas
  * abaixo são só os destaques, por isso a contagem não sai delas.
  *
- * Conferido projeto a projeto no portal da Câmara em 2026-09-13. Fica fora o
- * PLC 10/2025 (em tramitação, mas o processo registra a autoria como
- * Secretaria Legislativa). Ao mudar status de projeto, atualizar aqui.
+ * Conferido projeto a projeto no portal da Câmara em 2026-09-13; em 2026-09-14
+ * o relatório oficial em CSV achou a 14ª lei (Lei 7.030/2025, das
+ * Contrapartidas, que trocou de número no caminho). Fica fora o PLC 10/2025
+ * (em tramitação, mas o processo registra a autoria como Secretaria
+ * Legislativa). Ao mudar status de projeto, atualizar aqui.
  */
 export const PRODUCAO_LEGISLATIVA = {
   desde: 2021,
-  leis: 13,
+  leis: 14,
   emTramitacao: 7,
 } as const;
 

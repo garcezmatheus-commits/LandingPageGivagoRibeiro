@@ -117,7 +117,6 @@ export function PanoramaLegislativoSection() {
           <ScrollReveal className="lg:col-span-3">
             <div className="mb-5 flex items-center gap-2">
               <h3 className="font-heading text-xl font-bold">Aprovados e implementados</h3>
-              <Badge className="bg-primary/10 text-primary">{PROJETOS_CONCLUIDOS.length}</Badge>
             </div>
             <ul className="space-y-4">
               {PROJETOS_CONCLUIDOS.map((projeto) => (
@@ -133,7 +132,6 @@ export function PanoramaLegislativoSection() {
               <h3 className="font-heading text-lg font-bold text-muted-foreground">
                 Em tramitação
               </h3>
-              <Badge>{PROJETOS_EM_TRAMITE.length}</Badge>
             </div>
             <div className="rounded-2xl border border-border bg-card px-5 shadow-soft">
               {PROJETOS_EM_TRAMITE.map((projeto) => (
