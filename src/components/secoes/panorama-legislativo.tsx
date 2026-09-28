@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock, CircleSlash, Info, ExternalLink } from "lucide-react";
+import { CheckCircle2, Clock, ExternalLink } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { RotuloSecao } from "@/components/ui/rotulo-secao";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import {
   PROJETOS_CONCLUIDOS,
   PROJETOS_EM_TRAMITE,
-  PROJETOS_NAO_AVANCARAM,
   PERFIL_CITTA,
   PRODUCAO_LEGISLATIVA,
   type ProjetoDeLei,
@@ -59,31 +58,6 @@ function EmTramite({ projeto }: { projeto: ProjetoDeLei }) {
   );
 }
 
-/** Projeto que travou ou foi rejeitado, com o motivo à mostra. */
-function NaoAvancou({ projeto }: { projeto: ProjetoDeLei }) {
-  return (
-    <div className="flex gap-3 border-b border-border py-4 last:border-b-0">
-      <CircleSlash className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="font-medium leading-snug">{projeto.chamada ?? projeto.titulo}</span>
-          <span className="shrink-0 text-xs text-muted-foreground">{projeto.numero}</span>
-        </div>
-        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{projeto.situacao}</p>
-        {projeto.motivo && (
-          <p className="mt-2 flex gap-2 rounded-lg bg-muted px-3 py-2 text-sm text-muted-foreground">
-            <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-            <span>
-              <strong className="font-medium text-foreground">Por que não avançou: </strong>
-              {projeto.motivo}
-            </span>
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
-
 export function PanoramaLegislativoSection() {
   return (
     <section className="py-16 md:py-24" aria-labelledby="panorama-titulo">
@@ -116,7 +90,7 @@ export function PanoramaLegislativoSection() {
         <div className="grid items-start gap-10 lg:grid-cols-5">
           <ScrollReveal className="lg:col-span-3">
             <div className="mb-5 flex items-center gap-2">
-              <h3 className="font-heading text-xl font-bold">Aprovados e implementados</h3>
+              <h3 className="font-heading text-xl font-bold">Leis em destaque</h3>
             </div>
             <ul className="space-y-4">
               {PROJETOS_CONCLUIDOS.map((projeto) => (
@@ -140,36 +114,6 @@ export function PanoramaLegislativoSection() {
             </div>
           </ScrollReveal>
         </div>
-
-        <ScrollReveal className="mt-12">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-soft md:p-8">
-            <div className="mb-1 flex flex-wrap items-center gap-2">
-              <h3 className="font-heading text-xl font-bold">O que não avançou</h3>
-              {PROJETOS_NAO_AVANCARAM.length > 0 && <Badge>{PROJETOS_NAO_AVANCARAM.length}</Badge>}
-            </div>
-            <p className="mb-4 max-w-2xl text-sm text-muted-foreground">
-              Prestação de contas também é mostrar o que travou.
-              {PROJETOS_NAO_AVANCARAM.length > 0
-                ? " Abaixo, as propostas que não seguiram adiante e a razão de cada uma."
-                : ""}
-            </p>
-            {PROJETOS_NAO_AVANCARAM.length > 0 ? (
-              <div>
-                {PROJETOS_NAO_AVANCARAM.map((projeto) => (
-                  <NaoAvancou key={projeto.numero} projeto={projeto} />
-                ))}
-              </div>
-            ) : (
-              <p className="flex items-start gap-2 rounded-lg bg-muted px-3 py-2.5 text-sm text-muted-foreground">
-                <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>
-                  Levantamento em andamento — o que travou entra aqui assim que for conferido na
-                  Câmara.
-                </span>
-              </p>
-            )}
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );

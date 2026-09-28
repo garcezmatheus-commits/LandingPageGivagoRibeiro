@@ -11,7 +11,6 @@ import { FraseSection } from "@/components/secoes/frase";
 import { PilaresSection } from "@/components/secoes/pilares";
 import { NoticiasSection } from "@/components/secoes/noticias";
 import { YoutubeSection } from "@/components/secoes/youtube";
-import { FaqSection } from "@/components/secoes/faq";
 import { ContatoSection } from "@/components/secoes/contato";
 
 export const metadata: Metadata = {
@@ -32,7 +31,6 @@ export default function Home() {
         <PilaresSection />
         <NoticiasSection />
         <YoutubeSection />
-        <FaqSection />
         <ContatoSection />
       </main>
       <Footer />
